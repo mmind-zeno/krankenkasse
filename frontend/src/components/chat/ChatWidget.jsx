@@ -22,6 +22,7 @@ export default function ChatWidget() {
     try {
       const res = await fetch(API_CHAT, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: [...messages, { role: 'user', content: text }] }),
       });

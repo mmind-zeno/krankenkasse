@@ -1,4 +1,4 @@
-# KK-Check v0.1.1 - Deploy auf Server (Kimai 91.107.195.127)
+# KK-Check v0.1.4 - Deploy auf Server (Kimai 91.107.195.127)
 # SSH-Alias kimai nutzt Key ssh-kimai-zeno in ~/.ssh/config
 # Nutzung: .\deploy.ps1   oder  .\deploy.ps1 -Host kimai -Path /opt/kk-check
 
@@ -12,7 +12,7 @@ if (-not $Path) { $Path = "/opt/kk-check" }
 $ErrorActionPreference = "Stop"
 $projectRoot = $PSScriptRoot
 
-Write-Host "KK-Check v0.1.1 - Deploy zu $DeployHost : $Path" -ForegroundColor Green
+Write-Host "KK-Check v0.1.4 - Deploy zu $DeployHost : $Path" -ForegroundColor Green
 
 Write-Host "[1/4] Frontend build..." -ForegroundColor Cyan
 Push-Location $projectRoot\frontend
@@ -35,9 +35,14 @@ Copy-Item $projectRoot\frontend\postcss.config.js $deployDir\frontend\
 Copy-Item $projectRoot\frontend\tailwind.config.js $deployDir\frontend\
 Copy-Item $projectRoot\frontend\src\* $deployDir\frontend\src\ -Recurse -Force
 Copy-Item $projectRoot\frontend\dist $deployDir\frontend\dist -Recurse -Force
+if (Test-Path $projectRoot\frontend\scripts) { Copy-Item $projectRoot\frontend\scripts $deployDir\frontend\ -Recurse -Force }
+if (Test-Path $projectRoot\frontend\public) { Copy-Item $projectRoot\frontend\public $deployDir\frontend\ -Recurse -Force }
 Copy-Item $projectRoot\backend\package.json $deployDir\backend\
 Copy-Item $projectRoot\backend\package-lock.json $deployDir\backend\ -ErrorAction SilentlyContinue
 Copy-Item $projectRoot\backend\server.js $deployDir\backend\
+Copy-Item $projectRoot\backend\knowledge-base.txt $deployDir\backend\ -ErrorAction SilentlyContinue
+Copy-Item $projectRoot\backend\knowledge-base-zusatz.txt $deployDir\backend\ -ErrorAction SilentlyContinue
+if (Test-Path $projectRoot\backend\scripts) { Copy-Item $projectRoot\backend\scripts $deployDir\backend\ -Recurse -Force }
 Copy-Item $projectRoot\Dockerfile $deployDir\
 Copy-Item $projectRoot\docker-compose.yml $deployDir\
 Copy-Item $projectRoot\.env.example $deployDir\ -ErrorAction SilentlyContinue

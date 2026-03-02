@@ -1,6 +1,6 @@
 # KK-Check Liechtenstein
 
-**Version 0.1.1** — Krankenkassen-Prämien, Franchise-Optimizer, Kassenvergleich für Liechtenstein.
+**Version 0.1.4** — Krankenkassen-Prämien, Franchise-Optimizer, Kassenvergleich für Liechtenstein.
 
 - **Live:** [krankenkasse.mmind.space](https://krankenkasse.mmind.space) (nach Deploy)
 - Gratis, ohne Anmeldung.
@@ -39,6 +39,23 @@ Optional: `.\deploy.ps1 -Host "root@91.107.195.127" -Path "/opt/krankenkasse"`
 
 Das Skript baut das Frontend, kopiert alle Dateien auf den Server und startet dort `docker compose up -d`. Die App laeuft als Container **kk-app** auf Port 3000 und ist im Caddy-Netzwerk. **Nach dem ersten Deploy (ein Container statt kk-frontend/kk-backend):** Caddy anpassen — siehe `deploy/Caddyfile.snippet` — damit krankenkasse.mmind.space auf `kk-app:3000` zeigt; danach Caddy-Container neu starten.
 
+**OG-Image:** Wird beim Frontend-Build erzeugt (`npm run generate:og` → `frontend/public/og-image.png`, 1200×630).
+
+### Cron: Erinnerungsmails
+
+Erinnerungs-E-Mails werden über den Endpoint `POST /api/cron/send-reminders` ausgelöst. Auf dem Server in der `.env` (oder Docker-Umgebung) setzen:
+
+- `CRON_SECRET` — Geheimnis für den Cron-Aufruf (beliebiger langer String)
+- `SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM` (optional `SMTP_PORT`, `SMTP_SECURE`) — für den E-Mail-Versand
+
+Beispiel Cron (täglich 9:00 Uhr, auf dem Server oder von außen):
+
+```bash
+0 9 * * * curl -s -X POST "https://krankenkasse.mmind.space/api/cron/send-reminders?secret=DEIN_CRON_SECRET"
+```
+
+Alternativ im Container: `docker exec kk-app node /app/backend/scripts/send-reminders.js` (täglich per Cron auf dem Host ausführen).
+
 ## Version
 
-- **V0.1.1** — Stand: siehe `VERSION` und `frontend/package.json` / `backend/package.json`.
+- **V0.1.4** — Stand: siehe `VERSION` und `frontend/package.json` / `backend/package.json`.

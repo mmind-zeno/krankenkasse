@@ -7,6 +7,7 @@ import FranchiseOptimizerPage from './pages/FranchiseOptimizerPage';
 import VergleichPage from './pages/VergleichPage';
 import FamiliePage from './pages/FamiliePage';
 import GrenzgaengerPage from './pages/GrenzgaengerPage';
+import BenefitCheckPage from './pages/BenefitCheckPage';
 import FAQPage from './pages/FAQPage';
 import ImpressumPage from './pages/ImpressumPage';
 import DatenschutzPage from './pages/DatenschutzPage';
@@ -21,8 +22,8 @@ import AdminData from './pages/admin/AdminData';
 import AdminLogs from './pages/admin/AdminLogs';
 
 function RequireAdmin({ children }) {
-  const token = typeof localStorage !== 'undefined' ? localStorage.getItem('admin_token') : null;
-  if (!token) return <Navigate to="/admin/login" replace />;
+  const loggedIn = typeof localStorage !== 'undefined' && localStorage.getItem('admin_logged_in');
+  if (!loggedIn) return <Navigate to="/admin/login" replace />;
   return children;
 }
 
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/vergleich" element={<VergleichPage />} />
         <Route path="/familie" element={<FamiliePage />} />
         <Route path="/grenzgaenger" element={<GrenzgaengerPage />} />
+        <Route path="/leistungs-check" element={<BenefitCheckPage />} />
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/impressum" element={<ImpressumPage />} />
         <Route path="/datenschutz" element={<DatenschutzPage />} />

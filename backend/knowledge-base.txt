@@ -1,0 +1,10 @@
+KK-Check Wissensbasis (Krankenversicherung Liechtenstein):
+- Franchise: Jährlicher Selbstbehalt (500/1500/2500/4000 CHF). Höhere Franchise = tiefere Prämie.
+- Selbstbehalt: 20% (Erwachsene) bzw. 10% (Rentner) der Kosten über der Franchise, max. Hochkostengrenze 5000 CHF.
+- Wechselfrist Kasse: 30. November (Wirkung 1. Januar). Franchise ändern: bis 31. Dezember.
+- Kinder unter 16: keine Prämie. Jugendliche 16-20: reduzierte Prämie.
+- Arbeitgeberbeitrag 2026: 180.50 CHF/Monat (Erwachsene), 90.25 CHF (Jugend).
+- OKP BASIC: nur zugelassene Ärzte FL-Liste. OKP PLUS: freie Arztwahl (auch AT/CH).
+- Grenzgänger AT: Wahlrecht in den ersten 3 Monaten (FL oder AT Versicherung). Grenzgänger CH: in CH versichert.
+- Drei Kassen: Concordia, FKB, Swica. Gleiche Leistungen (KVG), unterschiedliche Prämien.
+Quelle: ag.llv.li

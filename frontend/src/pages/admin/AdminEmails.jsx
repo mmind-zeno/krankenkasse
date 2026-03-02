@@ -7,9 +7,7 @@ export default function AdminEmails() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('admin_token');
-    if (!token) return;
-    fetch(API, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(API, { credentials: 'include' })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Nicht autorisiert'))))
       .then((data) => setReminders(data.reminders || []))
       .catch((e) => setError(e.message));

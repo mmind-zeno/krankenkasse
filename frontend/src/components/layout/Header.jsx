@@ -9,6 +9,7 @@ export default function Header() {
     { to: '/', label: 'Start' },
     { to: '/franchise', label: 'Franchise-Optimizer' },
     { to: '/vergleich', label: 'Kassenvergleich' },
+    { to: '/leistungs-check', label: 'Leistungs-Check' },
     { to: '/faq', label: 'FAQ' },
     { to: '/datenschutz', label: 'Datenschutz' },
     { to: '/disclaimer', label: 'Disclaimer' },
@@ -17,8 +18,14 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-primary text-white shadow-md">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 sm:gap-3">
-          <span className="text-2xl">🏥</span>
+        <Link to="/" className="flex items-center gap-2 sm:gap-3 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary rounded-lg">
+          <img
+            src="/logo-kk-check.png"
+            alt="KK-Check Liechtenstein"
+            className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
+            width={48}
+            height={48}
+          />
           <div>
             <span className="font-bold text-lg leading-tight block">KK-Check</span>
             <span className="text-xs text-blue-200">von mmind.ai</span>
@@ -27,7 +34,7 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center gap-4">
           {navLinks.slice(0, 4).map(({ to, label }) => (
-            <Link key={to} to={to} className="text-blue-100 hover:text-white text-sm font-medium transition-colors">
+            <Link key={to} to={to} className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-2 text-blue-100 hover:text-white text-sm font-medium transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset">
               {label}
             </Link>
           ))}
@@ -38,7 +45,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="md:hidden p-2 rounded-lg text-white hover:bg-white/10"
+          className="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset"
           onClick={() => setMobileOpen(true)}
           aria-label="Menü öffnen"
         >

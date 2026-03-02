@@ -16,12 +16,13 @@ export default function AdminLoginPage() {
       const res = await fetch(API_LOGIN, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ username: user, password }),
       });
       const data = await res.json().catch(() => ({}));
-      if (data.token) {
+      if (data.ok || data.token) {
         try {
-          localStorage.setItem('admin_token', data.token);
+          localStorage.setItem('admin_logged_in', '1');
         } catch {}
         navigate('/admin/dashboard');
       } else {

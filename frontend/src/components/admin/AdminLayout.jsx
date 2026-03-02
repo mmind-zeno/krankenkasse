@@ -12,8 +12,12 @@ const links = [
 export default function AdminLayout() {
   const navigate = useNavigate();
 
-  const logout = () => {
+  const logout = async () => {
     try {
+      await fetch('/api/admin/logout', { method: 'POST', credentials: 'include' });
+    } catch {}
+    try {
+      localStorage.removeItem('admin_logged_in');
       localStorage.removeItem('admin_token');
     } catch {}
     navigate('/admin/login');

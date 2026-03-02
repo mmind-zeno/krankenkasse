@@ -7,9 +7,7 @@ export default function AdminDashboard() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('admin_token');
-    if (!token) return;
-    fetch(API, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(API, { credentials: 'include' })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Nicht autorisiert'))))
       .then(setStats)
       .catch((e) => setError(e.message));
