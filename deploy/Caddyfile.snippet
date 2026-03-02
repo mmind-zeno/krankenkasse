@@ -1,0 +1,8 @@
+# KK-Check v0.1.0 — Caddy (Kimai-Server)
+# Container kk-app laeuft im Netzwerk kimai-docker-caddy_default.
+# In Caddyfile (z.B. /root/kimai-docker-caddy/caddy_config/Caddyfile) ersetzen:
+# Statt kk-frontend:80 und kk-backend:3001 jetzt ein Block:
+
+krankenkasse.mmind.space {
+    reverse_proxy kk-app:3000
+}

@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Build
+frontend/dist/
+
+# Env and secrets
+.env
+.env.local
+*.pem
+
+# Backend runtime data (persisted in Docker volume)
+backend/data/*.json
+
+# IDE and OS
+.idea/
+.vscode/
+*.log
+.DS_Store
+Thumbs.db
+
+# Temp
+*.tmp
+*.temp
+.env.*.local

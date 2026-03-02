@@ -1,0 +1,28 @@
+# KK-Check v0.1.1 — Ein Container (Frontend + Backend), Port 3000
+# Auf Kimai-Server: Container im Caddy-Netzwerk für krankenkasse.mmind.space
+services:
+  app:
+    build: .
+    container_name: kk-app
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+    volumes:
+      - kk-data:/app/backend/data
+    restart: unless-stopped
+    networks:
+      - default
+      - caddy_net
+
+volumes:
+  kk-data:
+
+networks:
+  caddy_net:
+    external: true
+    name: kimai-docker-caddy_default

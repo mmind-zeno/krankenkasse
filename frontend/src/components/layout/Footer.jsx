@@ -1,0 +1,22 @@
+import { Link } from 'react-router-dom';
+
+export default function Footer() {
+  return (
+    <footer className="bg-primary text-white mt-auto">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6">
+        <div className="flex flex-col sm:flex-row justify-between gap-4">
+          <div>
+            <p className="font-semibold">KK-Check</p>
+            <p className="text-sm text-blue-200">von <a href="https://mmind.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">mmind.ai</a></p>
+          </div>
+          <div className="flex flex-wrap gap-4 text-sm">
+            <Link to="/datenschutz" className="text-blue-200 hover:text-white">Datenschutz</Link>
+            <Link to="/disclaimer" className="text-blue-200 hover:text-white">Disclaimer</Link>
+            <Link to="/impressum" className="text-blue-200 hover:text-white">Impressum</Link>
+          </div>
+        </div>
+        <p className="mt-4 text-xs text-blue-300">Prämien ohne Gewähr. Offizielle Quelle: <a href="https://ag.llv.li" target="_blank" rel="noopener noreferrer" className="underline">ag.llv.li</a></p>
+      </div>
+    </footer>
+  );
+}
