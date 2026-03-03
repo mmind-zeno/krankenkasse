@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import MobileNav from './MobileNav';
+import LogoMark from './LogoMark';
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -19,13 +20,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-primary text-white shadow-md">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 sm:gap-3 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary rounded-lg">
-          <img
-            src="/logo-kk-check.png"
-            alt="KK-Check Liechtenstein"
-            className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
-            width={48}
-            height={48}
-          />
+          <LogoMark className="h-10 w-10 sm:h-12 sm:w-12" />
           <div>
             <span className="font-bold text-lg leading-tight block">KK-Check</span>
             <span className="text-xs text-blue-200">von mmind.ai</span>
@@ -38,8 +33,8 @@ export default function Header() {
               {label}
             </Link>
           ))}
-          <a href="https://mmind.ai" target="_blank" rel="noopener noreferrer" className="text-amber-200 hover:text-white text-sm font-medium">
-            mmind.ai
+          <a href="https://mmind.ai" target="_blank" rel="noopener noreferrer" className="flex items-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset rounded" aria-label="mmind.ai">
+            <img src="/MMIND-Logo_white.svg" alt="mmind.ai" className="h-6 w-auto" />
           </a>
         </nav>
 

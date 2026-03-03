@@ -14,7 +14,7 @@ export default function AdminData() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-slate-800 mb-4">Daten</h1>
-      {error && <p className="text-red-600 mb-2">{error}</p>}
+      {error && <p className="text-blue-700 mb-2">{error}</p>}
       {data && (
         <div className="space-y-4">
           <p className="text-slate-600">{data.note}</p>

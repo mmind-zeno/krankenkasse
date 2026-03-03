@@ -16,7 +16,7 @@ export default function AdminDashboard() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-slate-800 mb-4">Dashboard</h1>
-      {error && <p className="text-red-600 mb-2">{error}</p>}
+      {error && <p className="text-blue-700 mb-2">{error}</p>}
       {stats && (
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="bg-white rounded-xl border border-slate-200 p-4">

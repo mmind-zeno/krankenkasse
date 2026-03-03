@@ -7,10 +7,106 @@ const { lifestyle_options, lifestyle_groups, benefits } = benefitData;
 const INSURER_KEYS = ['FKB', 'CONCORDIA', 'SWICA'];
 
 const INSURER_META = {
-  FKB:       { color: '#E4002B', bg: '#FFF5F5', label: 'FKB' },
+  FKB:       { color: '#1e40af', bg: '#EFF6FF', label: 'FKB' },
   CONCORDIA: { color: '#003087', bg: '#EFF4FF', label: 'Concordia' },
-  SWICA:     { color: '#009900', bg: '#F0FFF0', label: 'SWICA' },
+  SWICA:     { color: '#2563eb', bg: '#DBEAFE', label: 'SWICA' },
 };
+
+// Zweifarbige Kategorie-Icons (dunkelblau/hellblau/weiß)
+const CATEGORY_ICONS = {
+  fitness: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Hantel */}
+      <path d="M4 10v4M8 8v8M16 8v8M20 10v4" />
+      <rect x="9" y="10" width="6" height="4" rx="1" />
+    </svg>
+  ),
+  brille: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Brille */}
+      <circle cx="7" cy="13" r="3" />
+      <circle cx="17" cy="13" r="3" />
+      <path d="M4 13h2M18 13h2M9 13h6" />
+    </svg>
+  ),
+  massage: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Person liegend + Hand */}
+      <path d="M4 18h12a4 4 0 0 0-4-4H8l-4 4z" />
+      <circle cx="9" cy="8" r="2" />
+      <path d="M16 9c1.5 0 3 1 3 2.5 0 1.2-.6 2.1-1.5 3" />
+    </svg>
+  ),
+  alternativ: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Blatt */}
+      <path d="M5 19c6 0 10-4 10-10V5L5 15" />
+      <path d="M9 11c0 2-1 4-4 4" />
+    </svg>
+  ),
+  psycho: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Kopf / Gehirn */}
+      <path d="M10 4a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3h2a4 4 0 0 0 4-4V9a5 5 0 0 0-5-5z" />
+      <path d="M9 9h3M9 12h4M10 15h2" />
+    </svg>
+  ),
+  zahnarzt: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Zahn */}
+      <path d="M8 4h8l2 4-2 10-2-5-2 5-2-5-2 5L6 8z" />
+    </svg>
+  ),
+  augenlaser: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Auge + Laser */}
+      <path d="M2 12s3.5-5 10-5 10 5 10 5-3.5 5-10 5S2 12 2 12z" />
+      <circle cx="12" cy="12" r="2.5" />
+      <path d="M4 4l4 4" />
+    </svg>
+  ),
+  spital: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Spital mit Kreuz */}
+      <rect x="5" y="3" width="14" height="18" rx="2" />
+      <path d="M12 7v6M9 10h6" />
+      <path d="M9 19h6" />
+    </svg>
+  ),
+  unfall: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Schild / Schutz */}
+      <path d="M12 3 5 6v6c0 4 2.5 6.5 7 9 4.5-2.5 7-5 7-9V6z" />
+      <path d="M12 8v4M12 15h.01" />
+    </svg>
+  ),
+  ausland: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Flugzeug */}
+      <path d="M2 16l20-8-2-2-9 3-3-5-2 1 2 6-5 1z" />
+      <path d="M6 19h12" />
+    </svg>
+  ),
+  familie: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {/* Familie */}
+      <circle cx="7" cy="7" r="2" />
+      <circle cx="17" cy="7" r="2" />
+      <circle cx="12" cy="11" r="1.5" />
+      <path d="M4 21v-2a4 4 0 0 1 4-4h0a4 4 0 0 1 4 4v2" />
+      <path d="M12 21v-2a4 4 0 0 1 4-4h0a4 4 0 0 1 4 4v2" />
+    </svg>
+  ),
+};
+
+const DEFAULT_ICON = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    {/* Dokument mit Haken */}
+    <path d="M7 3h8l4 4v14H7z" />
+    <path d="M15 3v4h4" />
+    <path d="M9 14l2 2 4-4" />
+  </svg>
+);
 
 /* ─── Badges ─────────────────────────────────────────────── */
 
@@ -20,11 +116,11 @@ function ConfidenceBadge({ level }) {
     <span
       className={`inline-flex items-center px-2 py-0.5 rounded-full text-[0.65rem] font-semibold ${
         level === 'partial'
-          ? 'bg-amber-100 text-amber-800'
-          : 'bg-slate-100 text-slate-500'
+          ? 'bg-blue-100 text-blue-800'
+          : 'bg-blue-50 text-blue-600'
       }`}
     >
-      {level === 'partial' ? '⚠ Angaben prüfen' : '? Direkt anfragen'}
+      {level === 'partial' ? 'Angaben prüfen' : 'Direkt anfragen'}
     </span>
   );
 }
@@ -37,11 +133,11 @@ function WartefristBadge({ wartefrist }) {
     <span
       className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[0.65rem] font-semibold ${
         isNone
-          ? 'bg-green-100 text-green-700'
-          : 'bg-orange-100 text-orange-700'
+          ? 'bg-blue-100 text-blue-700'
+          : 'bg-blue-100 text-blue-800'
       }`}
     >
-      {isNone ? '✓ Keine Wartefrist' : `⏱ ${wartefrist}`}
+      {isNone ? 'Keine Wartefrist' : `${wartefrist}`}
     </span>
   );
 }
@@ -56,22 +152,26 @@ function VariantsTable({ variants }) {
   const col2 = hasOrtho ? 'Zahnbehandlung' : 'Erwachsene';
   const col3 = hasOrtho ? 'Kieferorthopädie' : hasChild ? 'Kinder' : null;
 
+  const w1 = col3 ? 'w-[32%]' : 'w-[40%]';
+  const w2 = col3 ? 'w-[34%]' : 'w-[60%]';
+  const w3 = 'w-[34%]';
+
   return (
-    <div className="overflow-x-auto mt-2 rounded-lg border border-slate-200">
-      <table className="w-full text-xs border-collapse">
+    <div className="min-w-0 w-full overflow-x-auto overflow-y-visible md:overflow-visible mt-2 rounded-lg border border-blue-200">
+      <table className="w-full min-w-0 table-fixed text-xs border-collapse">
         <thead>
-          <tr className="bg-slate-50 border-b border-slate-200">
-            <th className="text-left px-3 py-2 font-semibold text-slate-500 whitespace-nowrap">Produkt / Stufe</th>
-            <th className="text-left px-3 py-2 font-semibold text-slate-500 whitespace-nowrap">{col2}</th>
-            {col3 && <th className="text-left px-3 py-2 font-semibold text-slate-500 whitespace-nowrap">{col3}</th>}
+          <tr className="bg-blue-50 border-b border-blue-200">
+            <th className={`text-left px-3 py-2 font-semibold text-blue-800 ${w1}`}>Produkt / Stufe</th>
+            <th className={`text-left px-3 py-2 font-semibold text-blue-800 ${w2}`}>{col2}</th>
+            {col3 && <th className={`text-left px-3 py-2 font-semibold text-blue-800 ${w3}`}>{col3}</th>}
           </tr>
         </thead>
         <tbody>
           {variants.map((v, i) => (
-            <tr key={i} className="border-b border-slate-100 last:border-0 hover:bg-slate-50/60">
-              <td className="px-3 py-2 font-medium text-slate-800 whitespace-nowrap">{v.name}</td>
-              <td className="px-3 py-2 text-slate-600">{v.adult || '—'}</td>
-              {col3 && <td className="px-3 py-2 text-slate-600">{v.ortho ?? v.child ?? '—'}</td>}
+            <tr key={i} className="border-b border-blue-100 last:border-0 hover:bg-blue-50/60">
+              <td className={`px-3 py-2 font-medium text-blue-900 break-words align-top ${w1}`}>{v.name}</td>
+              <td className={`px-3 py-2 text-blue-800 break-words align-top ${w2}`}>{v.adult || '—'}</td>
+              {col3 && <td className={`px-3 py-2 text-blue-800 break-words align-top ${w3}`}>{v.ortho ?? v.child ?? '—'}</td>}
             </tr>
           ))}
         </tbody>
@@ -93,7 +193,7 @@ function InsurerPanel({ kasseKey, kasseData, isMyInsurer, showDetails }) {
       className={`rounded-xl overflow-hidden flex flex-col border transition-all ${
         isMyInsurer
           ? 'shadow-lg border-2'
-          : 'border-slate-200 shadow-sm'
+          : 'border-blue-200 shadow-sm'
       }`}
       style={isMyInsurer ? { borderColor: meta.color } : {}}
     >
@@ -105,18 +205,18 @@ function InsurerPanel({ kasseKey, kasseData, isMyInsurer, showDetails }) {
         <span className="font-bold text-white text-sm tracking-wide">{kasseKey}</span>
         {isMyInsurer && (
           <span className="text-[0.6rem] font-bold bg-white/25 text-white px-2 py-0.5 rounded-full">
-            ⭐ Meine Kasse
+            Meine Kasse
           </span>
         )}
       </div>
 
       {/* Content */}
       <div
-        className="p-4 flex flex-col gap-3 flex-1"
+        className="p-4 flex flex-col gap-3 flex-1 min-w-0 overflow-hidden"
         style={{ backgroundColor: isMyInsurer ? meta.bg : '#fff' }}
       >
         {/* Product name */}
-        <p className="text-xs text-slate-400 font-medium leading-tight">{kasseData.product}</p>
+        <p className="text-xs text-blue-600/90 font-medium leading-tight break-words">{kasseData.product}</p>
 
         {/* Amount highlight */}
         <div>
@@ -127,7 +227,7 @@ function InsurerPanel({ kasseKey, kasseData, isMyInsurer, showDetails }) {
             {kasseData.amount_highlight}
           </span>
           {kasseData.period && kasseData.period !== '—' && (
-            <span className="text-xs text-slate-400 ml-1.5">/ {kasseData.period}</span>
+            <span className="text-xs text-blue-600/80 ml-1.5">/ {kasseData.period}</span>
           )}
         </div>
 
@@ -135,13 +235,13 @@ function InsurerPanel({ kasseKey, kasseData, isMyInsurer, showDetails }) {
         {visibleConditions.length > 0 && (
           <ul className="space-y-1.5">
             {visibleConditions.map((c, i) => (
-              <li key={i} className="text-xs text-slate-600 flex items-start gap-1.5 leading-snug">
-                <span className="text-green-500 shrink-0 mt-0.5 font-bold text-[0.7rem]">✓</span>
-                <span>{c}</span>
+              <li key={i} className="text-xs text-blue-800 flex items-start gap-1.5 leading-snug break-words min-w-0">
+                <span className="text-blue-600 shrink-0 mt-0.5 font-bold text-[0.7rem]">✓</span>
+                <span className="min-w-0">{c}</span>
               </li>
             ))}
             {!showDetails && hiddenCount > 0 && (
-              <li className="text-xs text-slate-400 italic pl-4">
+              <li className="text-xs text-blue-600/80 italic pl-4">
                 +{hiddenCount} weitere Details …
               </li>
             )}
@@ -179,7 +279,7 @@ function InsurerPanel({ kasseKey, kasseData, isMyInsurer, showDetails }) {
 /* ─── BenefitCard (per category) ────────────────────────── */
 
 function BenefitCard({ option, benefit, myInsurer, index }) {
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(true);
 
   const insurerOrder = myInsurer
     ? [myInsurer, ...INSURER_KEYS.filter((k) => k !== myInsurer)]
@@ -187,17 +287,17 @@ function BenefitCard({ option, benefit, myInsurer, index }) {
 
   return (
     <article
-      className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+      className="bg-white rounded-2xl border border-blue-200 shadow-sm overflow-hidden"
       style={{ animation: `fadeInUp 0.35s ease ${index * 0.07}s both` }}
     >
       {/* Card header */}
-      <div className="px-5 py-4 bg-slate-50 border-b border-slate-100 flex items-center gap-3">
-        <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-2xl shrink-0 shadow-sm">
-          {option.emoji}
+      <div className="px-5 py-4 bg-blue-50 border-b border-blue-100 flex items-center gap-3">
+        <div className="w-12 h-12 rounded-xl bg-white border border-blue-200 flex items-center justify-center shrink-0 shadow-sm text-blue-700">
+          {CATEGORY_ICONS[option.id] ?? CATEGORY_ICONS.fitness}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-slate-900 text-lg leading-snug">{benefit.title}</h3>
-          <p className="text-sm text-slate-500 mt-0.5 leading-snug">{benefit.intro}</p>
+          <h3 className="font-bold text-blue-900 text-lg leading-snug">{benefit.title}</h3>
+          <p className="text-sm text-blue-700/90 mt-0.5 leading-snug">{benefit.intro}</p>
         </div>
       </div>
 
@@ -280,7 +380,7 @@ export default function BenefitCheck() {
                   key={id}
                   className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-100 text-primary text-xs font-semibold"
                 >
-                  {opt?.emoji} {opt?.label}
+                  {opt?.label}
                 </span>
               );
             })}
@@ -288,12 +388,12 @@ export default function BenefitCheck() {
         </div>
 
         {/* My-insurer banner */}
-        {myInsurer && (
+            {myInsurer && (
           <div
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white"
             style={{ backgroundColor: INSURER_META[myInsurer]?.color }}
           >
-            <span>⭐ Ihre Kasse wird hervorgehoben:</span>
+            <span>Ihre Kasse wird hervorgehoben:</span>
             <span className="font-bold">{myInsurer}</span>
           </div>
         )}
@@ -312,8 +412,8 @@ export default function BenefitCheck() {
         </div>
 
         {/* Disclaimer */}
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-900">
-          <strong>⚠️ Wichtiger Hinweis:</strong> Alle Angaben sind unverbindliche
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-900">
+          <strong>Wichtiger Hinweis:</strong> Alle Angaben sind unverbindliche
           Orientierungswerte aus öffentlich verfügbaren Quellen (Stand 2026).
           Zusatzversicherungen erfordern eine Gesundheitsprüfung — eine Aufnahme ist
           nicht garantiert. Massgebend sind die Versicherungsbedingungen (AVB) der
@@ -327,15 +427,16 @@ export default function BenefitCheck() {
         <div className="flex flex-wrap gap-3">
           <a
             href={`https://wa.me/?text=${encodeURIComponent(
-              `💡 KK-Check: ${selected
-                .map((id) => lifestyle_options.find((o) => o.id === id)?.emoji)
-                .join('')} — Was zahlt meine Krankenkasse?\nhttps://krankenkasse.mmind.space/leistungs-check`
+              `KK-Check: ${selected
+                .map((id) => lifestyle_options.find((o) => o.id === id)?.label)
+                .filter(Boolean)
+                .join(', ')} — Was zahlt meine Krankenkasse?\nhttps://krankenkasse.mmind.space/leistungs-check`
             )}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary inline-flex items-center gap-2 text-sm"
           >
-            📱 Auf WhatsApp teilen
+            Auf WhatsApp teilen
           </a>
         </div>
 
@@ -353,8 +454,8 @@ export default function BenefitCheck() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-2xl font-bold text-slate-900">Was gehört zu Ihrem Alltag?</h2>
-        <p className="text-slate-500 mt-1 text-sm">
+        <h2 className="text-2xl font-bold text-blue-900">Was gehört zu Ihrem Alltag?</h2>
+        <p className="text-blue-700/90 mt-1 text-sm">
           Wählen Sie alle Bereiche — dann sehen Sie direkt, was Ihre Kasse zahlt.
         </p>
       </div>
@@ -362,7 +463,7 @@ export default function BenefitCheck() {
       {/* Category groups */}
       {groups.map((group) => (
         <div key={group.id}>
-          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+          <h3 className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">
             {group.label}
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2.5">
@@ -378,19 +479,21 @@ export default function BenefitCheck() {
                   className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 min-h-[90px] text-center transition-all active:scale-95 ${
                     isSelected
                       ? 'border-primary bg-blue-50 shadow-sm shadow-primary/10'
-                      : 'border-slate-200 bg-white hover:border-primary/30 hover:bg-slate-50'
+                      : 'border-blue-200 bg-white hover:border-primary/30 hover:bg-blue-50'
                   }`}
                   aria-pressed={isSelected}
                 >
-                  <span className="text-3xl leading-none">{opt.emoji}</span>
+                  <div className="w-8 h-8 rounded-full bg-blue-100 border border-blue-300 flex items-center justify-center text-blue-700">
+                    {CATEGORY_ICONS[opt.id] ?? CATEGORY_ICONS.fitness}
+                  </div>
                   <span
                     className={`text-sm font-semibold leading-tight ${
-                      isSelected ? 'text-primary' : 'text-slate-800'
+                      isSelected ? 'text-primary' : 'text-blue-900'
                     }`}
                   >
                     {opt.label}
                   </span>
-                  <span className="text-[0.65rem] text-slate-400 leading-tight hidden sm:block">
+                  <span className="text-[0.65rem] text-blue-600/80 leading-tight hidden sm:block">
                     {opt.sublabel}
                   </span>
                 </button>
@@ -401,10 +504,10 @@ export default function BenefitCheck() {
       ))}
 
       {/* Insurer filter */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <p className="text-sm font-semibold text-slate-700 mb-3">
+      <div className="rounded-2xl border border-blue-200 bg-white p-5 shadow-sm">
+        <p className="text-sm font-semibold text-blue-900 mb-3">
           Ich bin bereits bei …{' '}
-          <span className="font-normal text-slate-400">(optional — für Hervorhebung)</span>
+          <span className="font-normal text-blue-600/80">(optional — für Hervorhebung)</span>
         </p>
         <div className="flex flex-wrap gap-2">
           {[null, ...INSURER_KEYS].map((key) => {
@@ -419,11 +522,11 @@ export default function BenefitCheck() {
                 style={
                   isSelected
                     ? {
-                        backgroundColor: meta?.color ?? '#475569',
-                        borderColor: meta?.color ?? '#475569',
+                        backgroundColor: meta?.color ?? '#1e40af',
+                        borderColor: meta?.color ?? '#1e40af',
                         color: '#fff',
                       }
-                    : { borderColor: '#e2e8f0', color: '#64748b', backgroundColor: '#fff' }
+                    : { borderColor: '#bfdbfe', color: '#1e40af', backgroundColor: '#fff' }
                 }
               >
                 {key ?? 'Noch keine / egal'}
@@ -449,7 +552,7 @@ export default function BenefitCheck() {
           <button
             type="button"
             onClick={() => setSelected([])}
-            className="text-sm text-slate-400 hover:text-slate-600 focus:outline-none focus:underline"
+            className="text-sm text-blue-600/80 hover:text-blue-700 focus:outline-none focus:underline"
           >
             Auswahl löschen
           </button>

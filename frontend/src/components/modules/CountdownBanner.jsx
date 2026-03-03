@@ -18,7 +18,7 @@ export default function CountdownBanner() {
   }, []);
 
   return (
-    <div className={`rounded-xl px-4 py-3 text-center ${isUrgent ? 'bg-amber-100 border-2 border-amber-400 text-amber-900' : 'bg-blue-50 border border-blue-200 text-primary'}`}>
+    <div className={`rounded-xl px-4 py-3 text-center ${isUrgent ? 'bg-blue-100 border-2 border-blue-400 text-blue-900' : 'bg-blue-50 border border-blue-200 text-primary'}`}>
       <span className="font-medium">Wechselfrist Kassenwechsel: </span>
       <span className="font-bold tabular-nums">{days}</span> Tage — 30. November
       <Link to="/franchise" className="ml-2 text-sm underline font-medium hover:no-underline">

@@ -5,7 +5,7 @@
 
 :root {
   --blue-950: #001A4D;
-  --blue-900: #002470;
+  --blue-900: #1e3a8a;
   --blue-800: #003087;
   --blue-700: #1A4DAD;
   --blue-600: #2563EB;
@@ -23,7 +23,7 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 16px;
   background-color: var(--bg-app);
-  color: var(--slate-900);
+  color: var(--blue-900);
 }
 
 .heading-hero { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
@@ -35,7 +35,7 @@ body {
   @apply min-h-[44px] px-4 py-2 rounded-xl font-semibold bg-primary text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white transition-colors;
 }
 .btn-secondary {
-  @apply min-h-[44px] px-4 py-2 rounded-xl font-medium border-2 border-slate-300 text-slate-700 hover:border-slate-400 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors;
+  @apply min-h-[44px] px-4 py-2 rounded-xl font-medium border-2 border-blue-200 text-blue-800 hover:border-blue-400 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors;
 }
 
 @keyframes float {

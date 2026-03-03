@@ -16,7 +16,7 @@ export default function AdminEmails() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-slate-800 mb-4">E-Mails / Erinnerungen</h1>
-      {error && <p className="text-red-600 mb-2">{error}</p>}
+      {error && <p className="text-blue-700 mb-2">{error}</p>}
       {reminders && (
         <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
           <table className="w-full text-left text-sm">

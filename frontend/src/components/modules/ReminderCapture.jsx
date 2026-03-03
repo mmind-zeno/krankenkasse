@@ -59,8 +59,8 @@ export default function ReminderCapture({ defaultKasse, defaultFranchise, onSucc
           className="w-full rounded-xl border border-slate-200 px-3 py-2"
         />
       </div>
-      {status === 'ok' && <p className="text-sm text-green-600">Erinnerung geplant. Sie erhalten eine E-Mail.</p>}
-      {status === 'error' && <p className="text-sm text-red-600">Speichern fehlgeschlagen. Bitte später erneut versuchen.</p>}
+      {status === 'ok' && <p className="text-sm text-blue-600">Erinnerung geplant. Sie erhalten eine E-Mail.</p>}
+      {status === 'error' && <p className="text-sm text-blue-700">Speichern fehlgeschlagen. Bitte später erneut versuchen.</p>}
       <button type="submit" disabled={status === 'sending'} className="btn-primary disabled:opacity-50">
         {status === 'sending' ? 'Wird gesendet...' : 'Erinnerung anfordern'}
       </button>

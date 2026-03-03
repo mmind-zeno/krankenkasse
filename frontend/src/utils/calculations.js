@@ -45,13 +45,22 @@ export function findOptimalFranchise(
   const results = franchises.map((franchise) => {
     const premiumKey = `franchise_${franchise}`;
     const monthlyPremium = premiums[premiumKey].monthly;
-    const totalCost = calculateTotalYearlyCost(yearlyMedicalCosts, franchise, monthlyPremium, rate);
+    const yearlyPremium = monthlyPremium * 12;
+    const franchiseCost = Math.min(yearlyMedicalCosts, franchise);
+    const costsAboveFranchise = Math.max(0, yearlyMedicalCosts - franchise);
+    const maxSelbstbehalt = (hochkostengrenze - franchise) * rate;
+    const selbstbehalt = Math.min(costsAboveFranchise * rate, maxSelbstbehalt);
+    const totalCost = Math.round(yearlyPremium + franchiseCost + selbstbehalt);
     return {
       franchise,
       monthlyPremium,
       effectiveMonthly: getEffectiveMonthlyCost(monthlyPremium, ageBracket),
       totalCost,
-      yearlyPremium: monthlyPremium * 12,
+      yearlyPremium,
+      franchiseCost,
+      costsAboveFranchise,
+      maxSelbstbehalt,
+      selbstbehalt,
     };
   });
 

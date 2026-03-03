@@ -7,7 +7,7 @@ export default function ImpressumPage() {
       <Header />
       <main className="flex-1 max-w-3xl mx-auto w-full px-4 sm:px-6 py-8">
         <h1 className="heading-h2 text-primary">Impressum</h1>
-        <div className="prose prose-slate mt-4 text-slate-700">
+        <div className="prose prose-slate mt-4 text-blue-900">
           <p><strong>Angaben gemäss KVG / Informationspflicht</strong></p>
           <p>KK-Check ist ein unabhängiges Informationsangebot von mmind.ai. Es handelt sich um keine Krankenkasse und keine Versicherungsberatung.</p>
           <p><strong>Kontakt</strong><br />mmind.ai — Bei Fragen: Nutzen Sie die Kontaktmöglichkeiten auf mmind.ai.</p>

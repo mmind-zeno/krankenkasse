@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
 
-export default function ShareCard({ title = 'KK-Check Ergebnis', summary = '', optimalFranchise, savings }) {
+export default function ShareCard({ title = 'KK-Check Ergebnis', summary = '', optimalFranchise, savings, compact = false }) {
   const [copied, setCopied] = useState(false);
   const cardRef = useRef(null);
 
@@ -31,6 +31,10 @@ export default function ShareCard({ title = 'KK-Check Ergebnis', summary = '', o
     }
   };
 
+  const btnClass = compact
+    ? 'min-h-[32px] px-3 py-1.5 rounded-lg font-medium border-2 border-blue-200 text-blue-800 hover:border-blue-400 hover:bg-blue-50 text-xs inline-flex items-center gap-1.5'
+    : 'btn-secondary inline-flex items-center gap-2';
+
   return (
     <div className="flex flex-wrap items-center gap-2">
       {/* Karte nur für Bild-Export (1200×630), ausgeblendet */}
@@ -43,19 +47,19 @@ export default function ShareCard({ title = 'KK-Check Ergebnis', summary = '', o
         <h2 className="text-xl font-bold text-slate-900">{title}</h2>
         {summary && <p className="mt-2 text-sm text-slate-600">{summary}</p>}
         {optimalFranchise != null && <p className="mt-2 font-medium">Empfohlene Franchise: CHF {optimalFranchise}</p>}
-        {savings != null && savings > 0 && <p className="mt-1 text-emerald-600">Ersparnis: CHF {savings}/Jahr</p>}
+        {savings != null && savings > 0 && <p className="mt-1 text-blue-600">Ersparnis: CHF {savings}/Jahr</p>}
         <p className="mt-4 text-xs text-slate-500">kk-check — krankenkasse.mmind.space</p>
       </div>
-      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex items-center gap-2">
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={btnClass}>
         WhatsApp
       </a>
-      <a href={mailto} className="btn-secondary inline-flex items-center gap-2">
+      <a href={mailto} className={btnClass}>
         E-Mail
       </a>
-      <button type="button" onClick={copyLink} className="btn-secondary">
+      <button type="button" onClick={copyLink} className={btnClass}>
         {copied ? 'Kopiert!' : 'Link kopieren'}
       </button>
-      <button type="button" onClick={downloadImage} className="btn-secondary">
+      <button type="button" onClick={downloadImage} className={btnClass}>
         Bild herunterladen
       </button>
     </div>

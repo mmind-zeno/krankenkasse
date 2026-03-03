@@ -10,13 +10,13 @@ export default function BenefitCheckPage() {
 
         {/* Page header */}
         <div className="mb-8">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-4">
-            💡 Leistungs-Check
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold mb-4">
+            Leistungs-Check
           </span>
           <h1 className="heading-h2 text-primary leading-tight">
             Was zahlt Ihre Krankenkasse zurück?
           </h1>
-          <p className="text-slate-600 mt-2 text-base max-w-2xl">
+          <p className="text-blue-800/90 mt-2 text-base max-w-2xl">
             Entdecken Sie, welche Zusatzleistungen FKB, Concordia und SWICA für Fitness,
             Zahnarzt, Spital-Komfort, Psychotherapie und mehr bezahlen — mit verifizierten
             Beträgen direkt aus den Produktreglements 2026.
@@ -25,16 +25,16 @@ export default function BenefitCheckPage() {
           {/* Feature chips */}
           <div className="flex flex-wrap gap-2 mt-4">
             {[
-              '🏥 Spital-Komfort',
-              '🧠 Psychotherapie',
-              '🦷 Zahnarzt',
-              '💪 Fitness',
-              '🤕 Unfall-Schutz',
-              '✈️ Reise & Ausland',
+              'Spital-Komfort',
+              'Psychotherapie',
+              'Zahnarzt',
+              'Fitness',
+              'Unfall-Schutz',
+              'Reise & Ausland',
             ].map((chip) => (
               <span
                 key={chip}
-                className="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200"
+                className="px-3 py-1 rounded-full bg-blue-50 text-blue-800 text-xs font-medium border border-blue-200"
               >
                 {chip}
               </span>

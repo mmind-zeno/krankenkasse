@@ -55,7 +55,7 @@ export default function AdminLoginPage() {
             required
           />
         </div>
-        {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+        {error && <p className="mt-2 text-sm text-blue-700">{error}</p>}
         <button type="submit" className="mt-4 w-full btn-primary">Anmelden</button>
       </form>
     </div>

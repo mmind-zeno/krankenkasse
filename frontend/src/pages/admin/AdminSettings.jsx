@@ -44,8 +44,8 @@ export default function AdminSettings() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-slate-800 mb-4">Einstellungen</h1>
-      {error && <p className="text-red-600 mb-2">{error}</p>}
-      {saved && <p className="text-green-600 mb-2">Gespeichert.</p>}
+      {error && <p className="text-blue-700 mb-2">{error}</p>}
+      {saved && <p className="text-blue-600 mb-2">Gespeichert.</p>}
       <form onSubmit={handleSave} className="max-w-xl space-y-4">
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-1">OPENAI_API_KEY (für Chat-KI)</label>

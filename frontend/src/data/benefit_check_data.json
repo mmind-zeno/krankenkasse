@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "version": "2026.2",
+    "version": "2026.3",
     "last_verified": "2026-03-02",
     "sources": [
       "fkb.li — AVB/Reglement Plus, DENTAL, UTI, Kombi Spital, TOURIST subito 2026",
@@ -46,54 +46,72 @@
       "intro": "Fitness-Abos werden nur über Zusatzversicherungen gefördert — nicht über die Grundversicherung.",
       "data": {
         "FKB": {
-          "product": "FKB Plus — Prävention",
+          "product": "FKB Plus — Prävention (ambulante Zusatzversicherung)",
           "product_url": "https://www.fkb.li/produkte/zusatzversicherung/plus/",
           "amount": "90%, max. CHF 500 / 3 Jahre",
           "amount_highlight": "CHF 500",
           "period": "alle 3 Jahre",
+          "variants": [
+            { "name": "FKB Plus (einzige Stufe)", "adult": "90%, max. CHF 500 / 3 Jahre", "child": "90%, max. CHF 500 / 3 Jahre (Kinder: max. CHF 350/Jahr Selbstbehalt)" }
+          ],
           "conditions": [
-            "Fitness, Rückenschule, Schwangerschaftskurse gedeckt",
-            "90% der Kosten bis max. CHF 500 pro 3 Jahre",
-            "Franchise wählbar: CHF 0 oder CHF 600",
-            "Selbstbehalt: 10% (max. CHF 700/Jahr)"
+            "Prävention: 90% der Kosten bis max. CHF 500 pro 3 Jahre, gemäss separater Leistungsliste FKB",
+            "Gedeckt: Fitness-Abos, Rückenschule, Haltungsturnen, Schwangerschafts- und Geburtsvorbereitungskurse",
+            "Franchise wählbar: CHF 0 oder CHF 600 (Erwachsene). Kinder: max. CHF 350/Jahr Selbstbehalt",
+            "Selbstbehalt: 10% (max. CHF 700/Jahr Erwachsene). OKP-Kostenbeteiligung wird angerechnet",
+            "Nur anerkannte Anbieter und Kurse gemäss FKB-Liste — vor Vertragsabschluss Liste prüfen oder bei FKB anfragen",
+            "Weitere Plus-Leistungen im gleichen Produkt: Komplementärmedizin, Brillen, Psychotherapie, Haushaltshilfe, Kuren, Transporte",
+            "Fitness-Abo: 90% bis max. CHF 500/3 Jahre nur bei anerkannten Studios"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
           "cta": "Mehr erfahren"
         },
         "CONCORDIA": {
-          "product": "DIVERSA / DIVERSAcare / NATURAplus",
+          "product": "DIVERSA (Prävention & Fitness) und/oder NATURA (Gesundheitsförderung)",
           "product_url": "https://www.concordia.li/de/privatpersonen/leistungen/zusatzversicherungen/diversa.html",
-          "amount": "CHF 200–500 / Jahr",
+          "amount": "CHF 200–500 / Jahr (DIVERSA) bzw. CHF 200–300 (NATURA)",
           "amount_highlight": "bis CHF 500",
           "period": "pro Jahr",
           "variants": [
-            { "name": "DIVERSA",     "adult": "CHF 200/Jahr", "child": "CHF 200/Jahr" },
+            { "name": "DIVERSA",     "adult": "CHF 200/Jahr Prävention & Fitness", "child": "CHF 200/Jahr" },
             { "name": "DIVERSAplus", "adult": "CHF 300/Jahr", "child": "CHF 300/Jahr" },
             { "name": "DIVERSAcare", "adult": "CHF 500/Jahr", "child": "CHF 500/Jahr" },
-            { "name": "NATURA",      "adult": "CHF 200/Jahr", "child": "—" },
+            { "name": "NATURA",      "adult": "CHF 200/Jahr Prävention & Gesundheitsförderung", "child": "—" },
             { "name": "NATURAplus",  "adult": "CHF 300/Jahr", "child": "—" }
           ],
           "conditions": [
-            "DIVERSAcare: CHF 500/Jahr (beste Option)",
-            "Fitness-Center, Yoga, Pilates, Rückengymnastik anerkannt",
-            "Ab 3. Kind: NATURA + DIVERSA kostenlos"
+            "DIVERSA: Prävention & Fitness = Abos anerkannter Fitnesscenter, Sportvereine, Gesundheitskurse (Yoga, Pilates, Rückengymnastik). DIVERSAcare mit CHF 500/Jahr beste Option für reine Fitness-Nutzung",
+            "NATURA: Beiträge an Fitness- und Wellnesszentren sowie Kurse (Yoga, Qi Gong, Autogenes Training). Kann mit DIVERSA kombiniert werden — Leistungen addieren sich je nach Vertrag",
+            "Keine separate Franchise für DIVERSA/NATURA. Selbstbehalt DIVERSA 10% (bis OKP-Max erreicht), NATURA 25%",
+            "Anerkannte Anbieter: CONCORDIA-Liste bzw. EMR-/ASCA-/NVS-anerkannte Leistungserbringer. Vor Buchung Anerkennung prüfen",
+            "Ab 3. Kind: NATURA + DIVERSA bei Concordia oft kostenlos — Familienangebot nutzen",
+            "Wartefrist: keine für Prävention/Fitness. Mutterschaftsleistungen 365 Tage",
+            "DIVERSA und NATURA kombinierbar — Jahresbeiträge addieren sich"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
           "cta": "Jetzt informieren"
         },
         "SWICA": {
-          "product": "Praevita (mit Completa Top/Forte)",
+          "product": "Praevita (Zusatz zu Completa Top oder Completa Forte)",
           "product_url": "https://www.swica.ch/de/private/versicherungen/zusatzversicherungen/praevita",
-          "amount": "50%, max. CHF 500 / Jahr",
-          "amount_highlight": "CHF 500",
+          "amount": "50%, max. CHF 500 / Jahr (Praevita); kombiniert bis CHF 1'300/Jahr möglich",
+          "amount_highlight": "bis CHF 1'300",
           "period": "pro Jahr",
+          "variants": [
+            { "name": "Completa Top + Praevita", "adult": "50%, max. CHF 500/Jahr (Praevita)", "child": "Kinderrabatte" },
+            { "name": "Completa Forte + Praevita", "adult": "50%, max. CHF 500/Jahr + weitere Completa-Leistungen", "child": "Kinderrabatte" },
+            { "name": "Completa Forte + Praevita + Optima", "adult": "kombiniert bis CHF 1'300/Jahr (Bewegung + Ernährung + Entspannung)", "child": "—" }
+          ],
           "conditions": [
-            "Über 100 anerkannte Angebote (Fitnesscenter, Yoga, Ernährung)",
-            "Pro Vorsorgeart (Bewegung/Ernährung/Entspannung) max. CHF 300",
-            "Nur kombinierbar mit Completa Top oder Forte",
-            "Benevita Bonusprogramm: weitere Prämienrabatte möglich"
+            "Praevita nur abschliessbar in Kombination mit Completa Top oder Completa Forte (ambulante Basis-Zusatzversicherung)",
+            "Über 100 anerkannte Angebote: Fitnesscenter, Yoga, Pilates, Ernährungsberatung, Kurse. Pro Kategorie (Bewegung / Ernährung / Entspannung) max. CHF 300/Jahr, gesamt max. CHF 500/Jahr reine Praevita-Leistung",
+            "Mit Optima: zusätzliche Vorsorgeleistungen — Gesamtdeckung Bewegung/Ernährung/Entspannung bis ca. CHF 1'300/Jahr (Stand Reglement prüfen)",
+            "Benevita Bonusprogramm: Prämienrabatte durch gesundheitsförderndes Verhalten. Anmeldung über SWICA",
+            "Anerkennung: nur SWICA-anerkannte Anbieter. Verzeichnis auf swica.ch unter Praevita / Gesundheit",
+            "Keine Wartefrist für Prävention. Keine Franchise auf Praevita-Leistungen",
+            "Bewegung, Ernährung, Entspannung je max. CHF 300/Jahr (gesamt max. CHF 500)"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -116,7 +134,9 @@
           "conditions": [
             "Brillengläser und Kontaktlinsen: 90% der Kosten",
             "Max. CHF 300 pro 3 Jahre",
-            "Brillenpass / Rezept erforderlich"
+            "Brillenpass / Rezept erforderlich",
+            "Gilt für Gläser und Linsen; Fassungen separat prüfen",
+            "Abrechnung über Optiker oder direkt bei FKB einreichen"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -137,7 +157,9 @@
           "conditions": [
             "Nur Brillengläser & Kontaktlinsen (keine Fassungen)",
             "Kinder bis 18 Jahre: jährlicher Beitrag",
-            "Rezept / Brillenpass erforderlich"
+            "Rezept / Brillenpass erforderlich",
+            "DIVERSApremium inkl. Augenlaser-Beitrag (Höchststufe)",
+            "Anerkannte Optiker: CONCORDIA-Liste prüfen"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -150,14 +172,16 @@
           "amount_highlight": "bis CHF 500",
           "period": "alle 3 Jahre",
           "variants": [
-            { "name": "Completa Top (Basis)", "adult": "90%, max. CHF 200 / 3 Jahre", "child": "CHF 180 / Jahr (OKP)" },
+            { "name": "Completa Top Basis", "adult": "90%, max. CHF 200 / 3 Jahre", "child": "CHF 180/Jahr OKP" },
             { "name": "+ Supplementa",        "adult": "bis CHF 500 / 3 Jahre gesamt", "child": "—" },
             { "name": "+ Optima",             "adult": "bis CHF 500 / 3 Jahre gesamt", "child": "—" }
           ],
           "conditions": [
             "Completa Top oder Forte als Basis erforderlich",
             "90% der Kosten (Gläser + Fassungen + Linsen)",
-            "Kinder: CHF 180/Jahr aus Grundversicherung"
+            "Kinder: CHF 180/Jahr aus Grundversicherung",
+            "Supplementa/Optima erhöhen Deckung auf CHF 500 / 3 Jahre gesamt",
+            "Abrechnung über SWICA-anerkannte Optiker"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -180,7 +204,9 @@
           "conditions": [
             "Komplementärmedizin: bis CHF 80 pro Stunde",
             "Bei anerkannten Ärzten und Therapeuten",
-            "Anerkannte Methoden: Liste auf fkb.li verfügbar"
+            "Anerkannte Methoden: Liste auf fkb.li verfügbar",
+            "Massage und Osteopathie in derselben Plus-Police wie Brillen, Psychotherapie",
+            "Vor Behandlungsbeginn Anerkennung des Anbieters prüfen"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -196,7 +222,8 @@
             "NATURA: 75% Komplementärmedizin, max. CHF 4'000/Jahr",
             "NATURAplus: 75%, unlimitierte Deckung",
             "Osteopathie, Kinesiologie, Craniosacral u.v.m.",
-            "EMR / ASCA / NVS-anerkannte Therapeuten erforderlich"
+            "EMR / ASCA / NVS-anerkannte Therapeuten erforderlich",
+            "Selbstbehalt 25%; Rechnung direkt bei CONCORDIA einreichen"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -212,7 +239,8 @@
             "Completa Forte: Gleichstellung Schul-/Komplementärmedizin",
             "SWICA-anerkannte Therapeuten erforderlich",
             "Osteopathie, Reflexzonenmassage: Methodenliste prüfen",
-            "Therapeutenverzeichnis: swica.ch"
+            "Therapeutenverzeichnis: swica.ch",
+            "Keine Mengenlimite pro Jahr bei Completa Forte"
           ],
           "wartefrist": "keine",
           "confidence": "partial",
@@ -235,7 +263,8 @@
           "conditions": [
             "Komplementärmedizin: bis CHF 80 pro Stunde",
             "Bei anerkannten Ärzten und Therapeuten",
-            "Anerkannte Methodenliste auf fkb.li"
+            "Anerkannte Methodenliste auf fkb.li",
+            "TCM, Homöopathie, Phytotherapie je nach Methodenliste"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -251,7 +280,8 @@
             "NATURA: 75% Komplementärmedizin, max. CHF 4'000/Jahr",
             "NATURAplus: 75%, unlimitierte Deckung",
             "Akupunktur, TCM, Homöopathie, Osteopathie, Ayurveda u.v.m.",
-            "EMR / ASCA / NVS-anerkannte Therapeuten"
+            "EMR / ASCA / NVS-anerkannte Therapeuten",
+            "Vor Erstbehandlung Anbieter in CONCORDIA-Liste prüfen"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -267,7 +297,8 @@
             "Completa Forte: Gleichstellung Schul-/Komplementärmedizin",
             "Optima: volle Deckung komplementärmedizinische Therapien",
             "SWICA-anerkannte Therapeuten und Methoden",
-            "Therapeutenverzeichnis: swica.ch/de/gesundheit"
+            "Therapeutenverzeichnis: swica.ch/de/gesundheit",
+            "Keine Franchise auf Alternativmedizin bei Completa Forte"
           ],
           "wartefrist": "keine",
           "confidence": "partial",
@@ -291,7 +322,8 @@
             "CHF 25 pro Sitzung, max. 60 Sitzungen pro Jahr",
             "Nur bei SWICA-anerkannten Psychotherapeuten",
             "Franchise wählbar: CHF 0 oder CHF 600",
-            "Selbstbehalt: 10% (max. CHF 700/Jahr)"
+            "Selbstbehalt: 10% (max. CHF 700/Jahr)",
+            "Verhaltenstherapie, Tiefenpsychologie je nach Anerkennung"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -311,7 +343,8 @@
           "conditions": [
             "DIVERSAcare: 75%, max. CHF 6'000/Jahr (bester Schutz)",
             "Durch nicht-ärztliche Therapeuten mit Qualifikationsnachweis",
-            "CONCORDIA-anerkannte Psychotherapeuten erforderlich"
+            "CONCORDIA-anerkannte Psychotherapeuten erforderlich",
+            "Selbstbehalt 25%; Kostengutsprache vor Behandlungsbeginn möglich"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -326,7 +359,8 @@
           "conditions": [
             "Completa Forte: Gleichstellung Schul-/Komplementärmedizin",
             "Volle Deckung für Psychotherapie nach OKP-Anrechnung",
-            "SWICA-anerkannte Psychotherapeuten"
+            "SWICA-anerkannte Psychotherapeuten",
+            "Kein Mengenlimit pro Jahr bei anerkannten Therapeuten"
           ],
           "wartefrist": "keine",
           "confidence": "partial",
@@ -350,7 +384,8 @@
             "50% der Zahnbehandlungskosten, max. CHF 1'000/Jahr",
             "Prophylaxe/Dentalhygiene: 50%, max. CHF 100/Jahr (im Limit enthalten)",
             "Kieferorthopädie: 50%, max. CHF 10'000 total (bis 20. Lebensjahr)",
-            "Keine Franchise, kein Selbstbehalt"
+            "Keine Franchise, kein Selbstbehalt",
+            "Füllungen, Kronen, Wurzelbehandlung im gleichen Jahreslimit"
           ],
           "wartefrist": "6 Monate (allgemein), 12 Monate (Zahnersatz/KFO)",
           "confidence": "verified",
@@ -371,7 +406,8 @@
             "75% aller Zahnbehandlungen (Füllungen, Wurzelbehandlung, Zahnersatz)",
             "Kieferorthopädie: ebenfalls 75% mit jährlichem Limit",
             "Keine Franchise, Selbstbehalt 25%",
-            "Gesundheitsprüfung / zahnärztliche Zustandserhebung bei Antrag"
+            "Gesundheitsprüfung / zahnärztliche Zustandserhebung bei Antrag",
+            "Stufe 3 empfohlen für Familien (CHF 5'000/Jahr)"
           ],
           "wartefrist": "6 Monate (allgemein), 12 Monate (Zahnersatz/KFO)",
           "confidence": "verified",
@@ -393,7 +429,8 @@
             "DENTA 3: beste Preis-Leistung (75%, CHF 1'500/Jahr)",
             "Kieferorthopädie: bis zum vollendeten 25. Lebensjahr",
             "Gesundheitsprüfung bei Antragstellung",
-            "Keine Franchise, Selbstbehalt je nach Stufe 25% oder 50%"
+            "Keine Franchise, Selbstbehalt je nach Stufe 25% oder 50%",
+            "DENTA 4: höchste Deckung für umfangreiche Behandlungen"
           ],
           "wartefrist": "6 Monate (allgemein), 12 Monate (Zahnersatz/KFO)",
           "confidence": "verified",
@@ -430,7 +467,8 @@
           "conditions": [
             "Nur in DIVERSApremium (nicht in anderen DIVERSA-Stufen)",
             "Refraktive Chirurgie: Augenlaser, LASIK etc. gedeckt",
-            "Genaue Beträge: CONCORDIA Landesvertretung FL anfragen"
+            "Genaue Beträge: CONCORDIA Landesvertretung FL anfragen",
+            "Kombination mit Brillen-Leistung in derselben Police"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -468,7 +506,8 @@
             "Grunddeckung: allgemeine Abteilung (kein Aufpreis)",
             "Halbprivat-Upgrade: CHF 200/Tag, max. CHF 3'000/Jahr",
             "Privat-Upgrade: CHF 400/Tag, max. CHF 6'000/Jahr",
-            "Entscheidung vor jedem Spitalaufenthalt möglich"
+            "Entscheidung vor jedem Spitalaufenthalt möglich",
+            "Gilt in Vertragsspitälern FL und CH"
           ],
           "wartefrist": "keine (Krankheit/Unfall), 365 Tage (Mutterschaft)",
           "confidence": "verified",
@@ -503,7 +542,8 @@
             "HOSPITA Flex Privat: CHF 400/Tag (max. CHF 8'000/Jahr)",
             "BestMed: private Abteilung weltweit",
             "OKP-Franchise/Selbstbehalt werden angerechnet (grosser Vorteil)",
-            "Franchise-Optionen: CHF 1'000/2'000/5'000 (bis 50% Prämienrabatt)"
+            "Franchise-Optionen: CHF 1'000/2'000/5'000 (bis 50% Prämienrabatt)",
+            "santé24: 24/7 medizinische Beratung vor Spitalwahl"
           ],
           "wartefrist": "3 Monate (Krankheit), 360 Tage (Mutterschaft)",
           "confidence": "verified",
@@ -527,7 +567,8 @@
             "Invaliditätskapital: z.B. CHF 100'000–200'000 (wählbar)",
             "Taggeld: z.B. CHF 50–100/Tag bei Arbeitsunfähigkeit",
             "Heilungskosten in der Privatabteilung weltweit",
-            "Todesfallkapital für Hinterbliebene"
+            "Todesfallkapital für Hinterbliebene",
+            "Ergänzt obligatorische UVG für Nichterwerbstätige"
           ],
           "wartefrist": "keine (Unfall ab Tag 1)",
           "confidence": "verified",
@@ -558,7 +599,8 @@
             "Freie Arzt- und Spitalwahl weltweit",
             "Zahnunfälle: volle Deckung",
             "Optionale Kapitalleistungen (Invalidität, Tod)",
-            "Haushaltshilfe und Kinderbetreuung nach Unfall"
+            "Haushaltshilfe und Kinderbetreuung nach Unfall",
+            "Keine Wartefrist; Deckung ab Vertragsbeginn"
           ],
           "wartefrist": "keine (Unfall ab Tag 1)",
           "confidence": "verified",
@@ -582,7 +624,8 @@
             "FKB Plus: Notfall-/Verlegungstransporte 90%, max. CHF 20'000/Jahr",
             "TOURIST subito: Annullierungskosten + Heilungskosten im Ausland",
             "Such- und Bergungsaktionen: bis CHF 20'000",
-            "Reisegepäck: bis CHF 2'000–4'000 (je nach Deckung)"
+            "Reisegepäck: bis CHF 2'000–4'000 (je nach Deckung)",
+            "Jahrespolice für mehrmalige Reisen möglich"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -615,7 +658,8 @@
             "Supplementa: Notfalltransporte Ausland bis CHF 70'000",
             "Optima: volle Deckung ambulant weltweit",
             "santé24: 24/7 medizinische Helpline",
-            "Completa Top/Forte als Basis erforderlich"
+            "Completa Top/Forte als Basis erforderlich",
+            "Repatriierung und Rücktransport im Notfall inklusive"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -639,7 +683,8 @@
             "Stillgeld: CHF 200 pro Kind",
             "Haushaltshilfe: 50%, max. CHF 30/Tag, bis 60 Tage/Jahr",
             "Badekuren: CHF 10/Tag (21 Tage/Jahr)",
-            "Erholungskuren: CHF 20/Tag (max. 30 Tage/Jahr)"
+            "Erholungskuren: CHF 20/Tag (max. 30 Tage/Jahr)",
+            "Rooming-in und Familienzimmer je nach Spital-Deckung"
           ],
           "wartefrist": "keine",
           "confidence": "verified",
@@ -655,7 +700,8 @@
             "Kinderbetreuung (krank/verunfallt, 4–12 J.): CHF 30/Std. (care) / CHF 50/Std. (plus)",
             "Rooming-in: CHF 60/Nacht (care) / CHF 100/Nacht (plus), max. 10 Nächte",
             "Familienzimmer bei Niederkunft: CHF 60–100/Nacht, max. 5 Nächte",
-            "Ab 3. Kind: NATURA + DIVERSA kostenlos"
+            "Ab 3. Kind: NATURA + DIVERSA kostenlos",
+            "Antrag vor Geburt empfohlen (Wartefrist Mutterschaft)"
           ],
           "wartefrist": "365 Tage (Mutterschaft)",
           "confidence": "verified",
@@ -671,7 +717,8 @@
             "Completa Top: Stillgeld CHF 200 pro Kind",
             "Completa Top: Familienhilfe CHF 30/Std. bei Erkrankung",
             "Praevita: Schwangerschafts- und Geburtsvorbereitungskurse gedeckt",
-            "Kinder: günstige Prämien bei SWICA"
+            "Kinder: günstige Prämien bei SWICA",
+            "Rooming-in je nach Spital-Zusatzversicherung"
           ],
           "wartefrist": "keine",
           "confidence": "partial",
