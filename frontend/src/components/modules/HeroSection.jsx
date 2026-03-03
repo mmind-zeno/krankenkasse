@@ -8,10 +8,10 @@ export default function HeroSection() {
         <CountdownBanner />
 
         <div className="mt-6">
-          <h1 className="sr-only">Krankenkassen Check Liechtenstein — Spare bis zu CHF 800/Jahr</h1>
+          <h1 className="sr-only">Krankenkassen Check Liechtenstein — Spare bis zu CHF 1200/Jahr</h1>
           <img
             src="/headerbild.png"
-            alt="Krankenkassen Check Liechtenstein: Spare bis zu CHF 800/Jahr bei der Krankenkasse. Finde deine optimale Franchise in 30 Sekunden."
+            alt="Krankenkassen Check Liechtenstein: Spare bis zu CHF 1200/Jahr bei der Krankenkasse. Finde deine optimale Franchise in 30 Sekunden."
             className="w-full max-w-4xl mx-auto rounded-2xl shadow-xl object-contain"
             width={1200}
             height={630}

@@ -1,4 +1,4 @@
-# KK-Check v0.3.0 - Deploy auf Server (Kimai 91.107.195.127)
+# KK-Check v0.4.0 - Deploy auf Server (Kimai 91.107.195.127)
 # SSH-Alias kimai nutzt Key ssh-kimai-zeno in ~/.ssh/config
 # Nutzung: .\deploy.ps1   oder  .\deploy.ps1 -Host kimai -Path /opt/kk-check
 
@@ -12,7 +12,7 @@ if (-not $Path) { $Path = "/opt/kk-check" }
 $ErrorActionPreference = "Stop"
 $projectRoot = $PSScriptRoot
 
-Write-Host "KK-Check v0.3.0 - Deploy zu $DeployHost : $Path" -ForegroundColor Green
+Write-Host "KK-Check v0.4.0 - Deploy zu $DeployHost : $Path" -ForegroundColor Green
 
 Write-Host "[1/4] Frontend build..." -ForegroundColor Cyan
 Push-Location $projectRoot\frontend

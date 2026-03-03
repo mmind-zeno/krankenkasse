@@ -1,7 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { track } from './utils/track';
 import DisclaimerBanner from './components/ui/DisclaimerBanner';
 import CookieBanner from './components/ui/CookieBanner';
 import ChatWidget from './components/chat/ChatWidget';
+import FeedbackBar from './components/FeedbackBar';
 import HomePage from './pages/HomePage';
 import FranchiseOptimizerPage from './pages/FranchiseOptimizerPage';
 import VergleichPage from './pages/VergleichPage';
@@ -20,6 +23,8 @@ import AdminUsers from './pages/admin/AdminUsers';
 import AdminEmails from './pages/admin/AdminEmails';
 import AdminData from './pages/admin/AdminData';
 import AdminLogs from './pages/admin/AdminLogs';
+import AdminUsage from './pages/admin/AdminUsage';
+import AdminFeedback from './pages/admin/AdminFeedback';
 
 function RequireAdmin({ children }) {
   const loggedIn = typeof localStorage !== 'undefined' && localStorage.getItem('admin_logged_in');
@@ -27,9 +32,19 @@ function RequireAdmin({ children }) {
   return children;
 }
 
+function TrackPageView() {
+  const location = useLocation();
+  useEffect(() => {
+    const name = location.pathname === '/' ? 'Start' : location.pathname.replace(/^\//, '').replace(/-/g, ' ');
+    track('page_view', { page: location.pathname, name });
+  }, [location.pathname]);
+  return null;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
+      <TrackPageView />
       <DisclaimerBanner />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -51,9 +66,12 @@ export default function App() {
           <Route path="emails" element={<AdminEmails />} />
           <Route path="data" element={<AdminData />} />
           <Route path="logs" element={<AdminLogs />} />
+          <Route path="usage" element={<AdminUsage />} />
+          <Route path="feedback" element={<AdminFeedback />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <FeedbackBar />
       <CookieBanner />
       <ChatWidget />
     </BrowserRouter>

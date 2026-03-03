@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
@@ -7,6 +7,7 @@ import ResultCard from '../components/ui/ResultCard';
 import ShareCard from '../components/modules/ShareCard';
 import ReminderCapture from '../components/modules/ReminderCapture';
 import { findOptimalFranchise } from '../utils/calculations';
+import { track } from '../utils/track';
 import franchiseRules from '../data/franchise_rules.json';
 import premiumsData from '../data/premiums_2026.json';
 
@@ -58,6 +59,10 @@ export default function FranchiseOptimizerPage() {
       setResult(null);
     }
   };
+
+  useEffect(() => {
+    if (result) track('franchise_calculated', { kasse: result.kasse, optimalFranchise: result.optimalFranchise, savings: result.savings });
+  }, [result]);
 
   const handleStep = (s) => setStep(Math.max(1, Math.min(3, s)));
 

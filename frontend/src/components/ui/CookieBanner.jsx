@@ -25,7 +25,7 @@ export default function CookieBanner() {
     <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-slate-800 text-white shadow-lg">
       <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-3">
         <p className="text-sm flex-1">
-          Wir nutzen nur technisch notwendige Speicherung (z. B. für Einstellungen). Details in unserem{' '}
+          Wir nutzen nur technisch notwendige Speicherung (z. B. für Einstellungen). Zur Verbesserung der Website erfassen wir anonymisierte Nutzungsdaten (z. B. besuchte Seiten). Details in unserem{' '}
           <Link to="/datenschutz" className="underline">Datenschutz</Link>.
         </p>
         <button

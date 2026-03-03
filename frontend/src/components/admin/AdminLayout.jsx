@@ -2,6 +2,8 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 const links = [
   { to: '/admin/dashboard', label: 'Dashboard' },
+  { to: '/admin/usage', label: 'Nutzung' },
+  { to: '/admin/feedback', label: 'Feedback & Likes' },
   { to: '/admin/settings', label: 'Einstellungen' },
   { to: '/admin/users', label: 'Benutzer' },
   { to: '/admin/emails', label: 'E-Mails' },

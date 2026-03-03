@@ -18,6 +18,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'kkcheck-dev-secret-change-in-produ
 const DATA_DIR = path.join(__dirname, 'data');
 const REMINDERS_FILE = path.join(DATA_DIR, 'reminders.json');
 const LOG_FILE = path.join(DATA_DIR, 'track.json');
+const FEEDBACK_FILE = path.join(DATA_DIR, 'feedback.json');
 const SETTINGS_FILE = path.join(DATA_DIR, 'settings.json');
 const KNOWLEDGE_PATH = path.join(__dirname, 'knowledge-base.txt');
 
@@ -75,6 +76,58 @@ function appendLog(entry) {
   log.push({ ...entry, ts: new Date().toISOString() });
   if (log.length > 5000) log = log.slice(-4000);
   fs.writeFileSync(LOG_FILE, JSON.stringify(log, null, 2), 'utf8');
+}
+
+function readFeedback() {
+  ensureDataDir();
+  try {
+    const raw = fs.readFileSync(FEEDBACK_FILE, 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return [];
+  }
+}
+
+function appendFeedback(entry) {
+  ensureDataDir();
+  const list = readFeedback();
+  list.push({ ...entry, ts: new Date().toISOString() });
+  fs.writeFileSync(FEEDBACK_FILE, JSON.stringify(list, null, 2), 'utf8');
+}
+
+function getUsageByDay(limitDays = 30) {
+  let log = [];
+  try {
+    const raw = fs.readFileSync(LOG_FILE, 'utf8');
+    log = JSON.parse(raw);
+  } catch {
+    return [];
+  }
+  const byDay = {};
+  const cut = new Date();
+  cut.setDate(cut.getDate() - limitDays);
+  const cutStr = cut.toISOString().slice(0, 10);
+  for (const e of log) {
+    const ts = e.ts || '';
+    const date = ts.slice(0, 10);
+    if (date < cutStr) continue;
+    if (!byDay[date]) byDay[date] = { date, uniqueClients: new Set(), totalEvents: 0, byEvent: {} };
+    byDay[date].totalEvents += 1;
+    const cid = e.payload?.clientId;
+    if (cid) byDay[date].uniqueClients.add(cid);
+    const ev = e.event || 'unknown';
+    byDay[date].byEvent[ev] = (byDay[date].byEvent[ev] || 0) + 1;
+  }
+  return Object.keys(byDay)
+    .sort()
+    .reverse()
+    .slice(0, limitDays)
+    .map((d) => ({
+      date: d,
+      uniqueUsers: byDay[d].uniqueClients.size,
+      totalEvents: byDay[d].totalEvents,
+      byEvent: byDay[d].byEvent,
+    }));
 }
 
 const KNOWLEDGE_ZUSATZ_PATH = path.join(__dirname, 'knowledge-base-zusatz.txt');
@@ -185,6 +238,17 @@ app.post('/api/track', (req, res) => {
   }
 });
 
+app.post('/api/feedback', (req, res) => {
+  try {
+    const { type, text } = req.body || {};
+    const t = type === 'feedback' ? 'feedback' : 'like';
+    appendFeedback({ type: t, text: text ? String(text).trim().slice(0, 2000) : null });
+    res.json({ ok: true, message: 'Danke für dein Feedback!' });
+  } catch (e) {
+    res.status(500).json({ message: 'Feedback fehlgeschlagen' });
+  }
+});
+
 app.post('/api/admin/login', (req, res) => {
   try {
     const { username, password } = req.body || {};
@@ -216,11 +280,19 @@ app.post('/api/admin/logout', (req, res) => {
 app.get('/api/admin/stats', authAdmin, (req, res) => {
   try {
     const reminders = readReminders();
+    const feedback = readFeedback();
     let logCount = 0;
     try {
       logCount = JSON.parse(fs.readFileSync(LOG_FILE, 'utf8')).length;
     } catch {}
-    res.json({ remindersCount: reminders.length, trackEventsCount: logCount });
+    const likesCount = feedback.filter((f) => f.type === 'like').length;
+    const feedbackCount = feedback.filter((f) => f.type === 'feedback').length;
+    res.json({
+      remindersCount: reminders.length,
+      trackEventsCount: logCount,
+      likesCount,
+      feedbackCount,
+    });
   } catch (e) {
     res.status(500).json({ message: 'Stats fehlgeschlagen' });
   }
@@ -245,6 +317,24 @@ app.get('/api/admin/logs', authAdmin, (req, res) => {
     res.json({ logs: readLog(limit) });
   } catch (e) {
     res.status(500).json({ message: 'Logs fehlgeschlagen' });
+  }
+});
+
+app.get('/api/admin/usage', authAdmin, (req, res) => {
+  try {
+    const days = Math.min(parseInt(req.query.days || '30', 10), 90);
+    res.json({ days: getUsageByDay(days) });
+  } catch (e) {
+    res.status(500).json({ message: 'Nutzung fehlgeschlagen' });
+  }
+});
+
+app.get('/api/admin/feedback', authAdmin, (req, res) => {
+  try {
+    const list = readFeedback();
+    res.json({ feedback: list.slice().reverse() });
+  } catch (e) {
+    res.status(500).json({ message: 'Feedback fehlgeschlagen' });
   }
 });
 
