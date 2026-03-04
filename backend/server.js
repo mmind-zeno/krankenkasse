@@ -131,6 +131,39 @@ function getUsageByDay(limitDays = 30) {
 }
 
 const KNOWLEDGE_ZUSATZ_PATH = path.join(__dirname, 'knowledge-base-zusatz.txt');
+const WISSENSDATENBANK_DIR = path.join(__dirname, 'krankenkassen_Wissensdatenbank_Mrz2026');
+const KNOWLEDGE_MAX_CHARS = 100000;
+
+function readWissensdatenbank() {
+  let out = '';
+  if (!fs.existsSync(WISSENSDATENBANK_DIR)) return out;
+  const files = [];
+  function walk(dir) {
+    try {
+      for (const name of fs.readdirSync(dir)) {
+        const full = path.join(dir, name);
+        const stat = fs.statSync(full);
+        if (stat.isDirectory()) walk(full);
+        else if (name.endsWith('.md')) files.push(full);
+      }
+    } catch {
+      // ignore
+    }
+  }
+  walk(WISSENSDATENBANK_DIR);
+  files.sort();
+  for (const f of files) {
+    if (out.length >= KNOWLEDGE_MAX_CHARS) break;
+    try {
+      const rel = path.relative(WISSENSDATENBANK_DIR, f);
+      const text = fs.readFileSync(f, 'utf8');
+      out += `\n\n--- ${rel} ---\n\n` + text.slice(0, KNOWLEDGE_MAX_CHARS - out.length);
+    } catch {
+      // skip
+    }
+  }
+  return out.trim();
+}
 
 function getKnowledgeBase() {
   let main = '';
@@ -141,10 +174,11 @@ function getKnowledgeBase() {
   }
   try {
     const zusatz = fs.readFileSync(KNOWLEDGE_ZUSATZ_PATH, 'utf8');
-    return main + '\n\n' + zusatz;
-  } catch {
-    return main;
-  }
+    main = main + '\n\n' + zusatz;
+  } catch {}
+  const wdb = readWissensdatenbank();
+  if (wdb) main = main + '\n\n## Wissensdatenbank Zusatzversicherungen (FKB, Concordia, SWICA Liechtenstein)\n\n' + wdb;
+  return main;
 }
 
 function authAdmin(req, res, next) {
@@ -175,7 +209,16 @@ app.post('/api/chat', async (req, res) => {
     const knowledge = getKnowledgeBase();
 
     if (apiKey && userText) {
-      const systemContent = `Du bist ein freundlicher Assistent für KK-Check (Krankenkasse Liechtenstein). Antworte kurz und sachlich auf Deutsch. Nutze dieses Wissen:\n${knowledge}`;
+      const systemContent = `Du bist der Assistent für KK-Check (Krankenversicherung Liechtenstein).
+
+Regeln:
+- Beantworte NUR Fragen zur Krankenversicherung in Liechtenstein: OKP (obligatorische Krankenpflegeversicherung), Franchise, Selbstbehalt, Prämien, Kassenwechsel, Zusatzversicherungen in FL, Kassen Concordia/FKB/SWICA in Liechtenstein, Grenzgänger in Bezug auf FL.
+- Antworte kurz und sachlich auf Deutsch.
+- Wenn die Frage NICHT zur Krankenversicherung in Liechtenstein gehört (anderes Land, anderes Thema): lehne freundlich ab und bitte um eine passende Frage. Erfinde keine Antworten zu anderen Ländern oder Themen.
+- Nutze ausschliesslich das folgende Wissen. Erfinde keine Leistungen, Fristen oder Zahlen. Wenn etwas nicht in den Quellen steht, sage das und verweise auf die Kasse oder ag.llv.li.
+
+Wissen:
+${knowledge}`;
       const openaiMessages = [
         { role: 'system', content: systemContent },
         ...messages.map((m) => ({ role: m.role, content: m.content })),

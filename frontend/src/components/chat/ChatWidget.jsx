@@ -58,7 +58,18 @@ export default function ChatWidget() {
                 </span>
               </div>
             ))}
-            {loading && <div className="text-slate-500 text-sm">...</div>}
+            {loading && (
+              <div className="text-left">
+                <span className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm bg-slate-100 text-slate-600">
+                  <span className="inline-flex gap-1">
+                    <span className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-2 h-2 rounded-full bg-primary animate-bounce" style={{ animationDelay: '300ms' }} />
+                  </span>
+                  <span>Chat arbeitet …</span>
+                </span>
+              </div>
+            )}
             <div ref={bottomRef} />
           </div>
           <form onSubmit={(e) => { e.preventDefault(); send(); }} className="p-3 border-t border-slate-200 flex gap-2">

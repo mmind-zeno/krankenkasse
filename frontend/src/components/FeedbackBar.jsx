@@ -49,9 +49,14 @@ export default function FeedbackBar() {
     <div className="bg-primary text-white border-t border-blue-800">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <p className="font-semibold text-sm sm:text-base">
-            Hat dir KK-Check geholfen? Gib uns ein Like oder schreib uns Feedback — wir freuen uns darüber!
-          </p>
+          <div>
+            <p className="font-semibold text-sm sm:text-base">
+              Hat dir KK-Check geholfen? Gib uns ein Like oder schreib uns Feedback — wir freuen uns darüber!
+            </p>
+            <p className="mt-1 text-xs sm:text-sm text-blue-200">
+              Webapps wie diese realisieren wir bei <a href="https://mmind.ai" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">mmind.ai</a> in wenigen Tagen und kostengünstig.
+            </p>
+          </div>
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
