@@ -115,12 +115,25 @@ export function calculateFamilyCost(
 ) {
   const kasse = premiumsData.kassen[kasseName];
   if (!kasse) throw new Error(`Unbekannte Kasse: ${kasseName}`);
-  const adultPremium = kasse.premiums[model][`franchise_${franchise}`].monthly;
-  const youthPremium = kasse.premiums.youth_basic[`franchise_${franchise}`].monthly;
+  const basicPremium = kasse.premiums.basic[`franchise_${franchise}`]?.monthly;
+  if (basicPremium == null) {
+    throw new Error(`Keine Prämie für Franchise ${franchise} bei ${kasseName} gefunden`);
+  }
+
+  // Jugendprämie: halbe Erwachsenenprämie, keine Kostenbeteiligung (gemäss LLV)
+  const adultBasic = basicPremium;
+  const youthBasic = adultBasic / 2;
+
+  // Erweiterte OKP (eOKP): fixe Zuschläge gemäss docs/okp-praemien-2026-llv-checked.md
+  const isPlus = model === 'plus';
+  const adultPremium = adultBasic + (isPlus ? 40 : 0);
+  const youthPremium = youthBasic + (isPlus ? 20 : 0);
+  const childPremium = isPlus ? 10 : 0; // Kinder: 0 CHF in Standard-OKP, +10 CHF in eOKP
+
   const monthlyTotal =
     adultsCount * adultPremium +
     youthCount * youthPremium +
-    childrenCount * 0;
+    childrenCount * childPremium;
   const arbeitgeberbeitragTotal =
     (adultsCount * (premiumsData._meta.arbeitgeberbeitrag_adult ?? 0)) +
     (youthCount * (premiumsData._meta.arbeitgeberbeitrag_youth ?? 0));

@@ -1,1 +1,55 @@
-{"_meta":{"year":2026,"source":"ag.llv.li","arbeitgeberbeitrag_adult":180.5,"arbeitgeberbeitrag_youth":90.25,"landesdurchschnitt":361,"hochkostengrenze":5000},"kassen":{"concordia":{"name":"CONCORDIA","shortName":"Concordia","color":"#E31837","website":"https://www.concordia.li","premiums":{"basic":{"franchise_500":{"monthly":355},"franchise_1500":{"monthly":325},"franchise_2500":{"monthly":295},"franchise_4000":{"monthly":258}},"plus":{"franchise_500":{"monthly":378},"franchise_1500":{"monthly":348},"franchise_2500":{"monthly":318},"franchise_4000":{"monthly":281}},"youth_basic":{"franchise_500":{"monthly":112},"franchise_1500":{"monthly":98},"franchise_2500":{"monthly":88},"franchise_4000":{"monthly":75}}}},"fkb":{"name":"FKB","shortName":"FKB","color":"#0066CC","website":"https://www.fkb.li","premiums":{"basic":{"franchise_500":{"monthly":338},"franchise_1500":{"monthly":308},"franchise_2500":{"monthly":278},"franchise_4000":{"monthly":241}},"plus":{"franchise_500":{"monthly":361},"franchise_1500":{"monthly":331},"franchise_2500":{"monthly":301},"franchise_4000":{"monthly":264}},"youth_basic":{"franchise_500":{"monthly":106},"franchise_1500":{"monthly":92},"franchise_2500":{"monthly":82},"franchise_4000":{"monthly":70}}}},"swica":{"name":"SWICA","shortName":"Swica","color":"#00A651","website":"https://www.swica.li","premiums":{"basic":{"franchise_500":{"monthly":332},"franchise_1500":{"monthly":302},"franchise_2500":{"monthly":272},"franchise_4000":{"monthly":235}},"plus":{"franchise_500":{"monthly":355},"franchise_1500":{"monthly":325},"franchise_2500":{"monthly":295},"franchise_4000":{"monthly":258}},"youth_basic":{"franchise_500":{"monthly":104},"franchise_1500":{"monthly":90},"franchise_2500":{"monthly":80},"franchise_4000":{"monthly":68}}}}}}
+{
+  "_meta": {
+    "year": 2026,
+    "source": "docs/okp-praemien-2026-llv-checked.md (Amt für Gesundheit FL, ag.llv.li)",
+    "arbeitgeberbeitrag_adult": 180.5,
+    "arbeitgeberbeitrag_youth": 90.25,
+    "landesdurchschnitt": 361,
+    "hochkostengrenze": 5000,
+    "note": "Monatsprämien Standard-OKP ohne Unfalldeckung gemäss LLV-Übersicht 2026. Erweiterte OKP (eOKP) wird in der Berechnung als fixer Zuschlag modelliert (Kinder +10, Jugendliche +20, Erwachsene +40 CHF pro Monat). Master-Datenquelle: docs/okp-praemien-2026-llv-checked.md."
+  },
+  "kassen": {
+    "concordia": {
+      "name": "CONCORDIA",
+      "shortName": "Concordia",
+      "color": "#E31837",
+      "website": "https://www.concordia.li",
+      "premiums": {
+        "basic": {
+          "franchise_500": { "monthly": 414.7 },
+          "franchise_1500": { "monthly": 373.8 },
+          "franchise_2500": { "monthly": 332.9 },
+          "franchise_4000": { "monthly": 271.5 }
+        }
+      }
+    },
+    "fkb": {
+      "name": "FKB",
+      "shortName": "FKB",
+      "color": "#0066CC",
+      "website": "https://www.fkb.li",
+      "premiums": {
+        "basic": {
+          "franchise_500": { "monthly": 378.0 },
+          "franchise_1500": { "monthly": 338.0 },
+          "franchise_2500": { "monthly": 298.0 },
+          "franchise_4000": { "monthly": 238.0 }
+        }
+      }
+    },
+    "swica": {
+      "name": "SWICA",
+      "shortName": "Swica",
+      "color": "#00A651",
+      "website": "https://www.swica.li",
+      "premiums": {
+        "basic": {
+          "franchise_500": { "monthly": 389.6 },
+          "franchise_1500": { "monthly": 347.1 },
+          "franchise_2500": { "monthly": 304.7 },
+          "franchise_4000": { "monthly": 241.2 }
+        }
+      }
+    }
+  }
+}
