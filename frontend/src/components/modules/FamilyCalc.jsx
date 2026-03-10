@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { calculateFamilyCost } from '../../utils/calculations';
 import { premiumsData } from '../../utils/calculations';
+import { formatChf } from '../../utils/format';
 import ResultCard from '../ui/ResultCard';
 
 const kassenList = Object.entries(premiumsData.kassen).map(([id, k]) => ({ id, name: k.shortName || k.name, color: k.color }));
@@ -64,9 +65,9 @@ export default function FamilyCalc() {
       </div>
       {result && (
         <div className="grid sm:grid-cols-2 gap-4">
-          <ResultCard title="Monatlich (Brutto)" value={`CHF ${Math.round(result.monthlyGross)}`} subtext="Vor Arbeitgeberbeitrag" />
-          <ResultCard title="Monatlich (Effektiv)" value={`CHF ${Math.round(result.monthlyEffective)}`} variant="success" subtext="Nach Arbeitgeberbeitrag" />
-          <ResultCard title="Jährlich (Effektiv)" value={`CHF ${Math.round(result.yearlyEffective)}`} variant="highlight" className="sm:col-span-2" />
+          <ResultCard title="Monatlich (Brutto)" value={`CHF ${formatChf(result.monthlyGross, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`} subtext="Vor Arbeitgeberbeitrag" />
+          <ResultCard title="Monatlich (Effektiv)" value={`CHF ${formatChf(result.monthlyEffective, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`} variant="success" subtext="Nach Arbeitgeberbeitrag" />
+          <ResultCard title="Jährlich (Effektiv)" value={`CHF ${formatChf(result.yearlyEffective, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`} variant="highlight" className="sm:col-span-2" />
           <p className="text-sm text-slate-500 sm:col-span-2">Kinder unter 16: keine Prämie. Quelle: ag.llv.li</p>
         </div>
       )}

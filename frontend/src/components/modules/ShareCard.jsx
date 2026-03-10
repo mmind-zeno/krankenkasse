@@ -1,11 +1,20 @@
 import { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
+import { formatChf } from '../../utils/format';
 
 export default function ShareCard({ title = 'KK-Check Ergebnis', summary = '', optimalFranchise, savings, compact = false }) {
   const [copied, setCopied] = useState(false);
   const cardRef = useRef(null);
 
-  const text = [title, summary, optimalFranchise != null && `Empfohlene Franchise: CHF ${optimalFranchise}`, savings != null && savings > 0 && `Ersparnis: CHF ${savings}/Jahr`].filter(Boolean).join('\n');
+  const text = [
+    title,
+    summary,
+    optimalFranchise != null &&
+      `Empfohlene Franchise: CHF ${formatChf(optimalFranchise, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`,
+    savings != null && savings > 0 && `Ersparnis: CHF ${formatChf(savings, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}/Jahr`,
+  ]
+    .filter(Boolean)
+    .join('\n');
   const url = typeof window !== 'undefined' ? window.location.href : '';
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + '\n' + url)}`;
   const mailto = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(text + '\n\n' + url)}`;
@@ -46,8 +55,16 @@ export default function ShareCard({ title = 'KK-Check Ergebnis', summary = '', o
       >
         <h2 className="text-xl font-bold text-slate-900">{title}</h2>
         {summary && <p className="mt-2 text-sm text-slate-600">{summary}</p>}
-        {optimalFranchise != null && <p className="mt-2 font-medium">Empfohlene Franchise: CHF {optimalFranchise}</p>}
-        {savings != null && savings > 0 && <p className="mt-1 text-blue-600">Ersparnis: CHF {savings}/Jahr</p>}
+        {optimalFranchise != null && (
+          <p className="mt-2 font-medium">
+            Empfohlene Franchise: CHF {formatChf(optimalFranchise, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+          </p>
+        )}
+        {savings != null && savings > 0 && (
+          <p className="mt-1 text-blue-600">
+            Ersparnis: CHF {formatChf(savings, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}/Jahr
+          </p>
+        )}
         <p className="mt-4 text-xs text-slate-500">kk-check — krankenkasse.mmind.space</p>
       </div>
       <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={btnClass}>

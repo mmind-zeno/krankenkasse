@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { compareAllKassen, premiumsData } from '../../utils/calculations';
+import { formatChf } from '../../utils/format';
 
 const franchises = [500, 1500, 2500, 4000];
 const kassenList = Object.entries(premiumsData.kassen).map(([id, k]) => ({ id, name: k.shortName || k.name, color: k.color }));
@@ -62,8 +63,8 @@ export default function PremiumTable() {
                   <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: r.kasseColor }} />
                   {r.kasseName}
                 </td>
-                <td className="px-4 py-3 text-right price-medium text-slate-800">CHF {r.monthlyPremium}</td>
-                <td className="px-4 py-3 text-right price-medium text-primary">CHF {r.effectiveMonthly}</td>
+                <td className="px-4 py-3 text-right price-medium text-slate-800">CHF {formatChf(r.monthlyPremium)}</td>
+                <td className="px-4 py-3 text-right price-medium text-primary">CHF {formatChf(r.effectiveMonthly)}</td>
               </tr>
             ))}
           </tbody>

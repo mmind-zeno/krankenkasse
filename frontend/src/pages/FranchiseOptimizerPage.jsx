@@ -10,6 +10,7 @@ import { findOptimalFranchise } from '../utils/calculations';
 import { track } from '../utils/track';
 import franchiseRules from '../data/franchise_rules.json';
 import premiumsData from '../data/premiums_2026.json';
+import { formatChf } from '../utils/format';
 
 const costOptions = Object.entries(franchiseRules.yearlyMedicalCostEstimates).map(([key, v]) => ({
   id: key,
@@ -164,20 +165,20 @@ export default function FranchiseOptimizerPage() {
               <div className="grid sm:grid-cols-2 gap-4">
                 <ResultCard
                   title="Empfohlene Franchise"
-                  value={`CHF ${result.optimalFranchise}`}
+                  value={`CHF ${formatChf(result.optimalFranchise, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`}
                   subtext={`Kasse: ${result.kasse}`}
                   variant="success"
                 />
                 <ResultCard
                   title="Geschätzte Jahreskosten"
-                  value={`CHF ${result.optimalTotalCost}`}
+                  value={`CHF ${formatChf(result.optimalTotalCost, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`}
                   subtext="Prämie + Franchise + Selbstbehalt"
                   variant="highlight"
                 />
                 {result.savings > 0 && (
                   <ResultCard
                     title="Mögliche Ersparnis vs. CHF 500 Franchise"
-                    value={`CHF ${result.savings}`}
+                    value={`CHF ${formatChf(result.savings, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`}
                     subtext="pro Jahr"
                     variant="success"
                     className="sm:col-span-2"
@@ -212,9 +213,9 @@ export default function FranchiseOptimizerPage() {
                           <p className="text-xs font-semibold text-blue-700 mb-1">Annahme Arztkosten (Szenario: {selectedCost.label})</p>
                           <p className="text-sm text-blue-900">
                             {selectedCost.costBreakdown ? (
-                              <>{selectedCost.costBreakdown} = <strong>CHF {total.toLocaleString('de-CH')} pro Jahr</strong></>
+                              <>{selectedCost.costBreakdown} = <strong>CHF {formatChf(total, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} pro Jahr</strong></>
                             ) : (
-                              <strong>CHF {total.toLocaleString('de-CH')} pro Jahr</strong>
+                              <strong>CHF {formatChf(total, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} pro Jahr</strong>
                             )}
                           </p>
                           <p className="text-xs text-blue-600 mt-1">Diese Jahreskosten bilden die Basis für Prämie, Franchise und Selbstbehalt in der Tabelle unten.</p>
@@ -243,10 +244,10 @@ export default function FranchiseOptimizerPage() {
                                 item.franchise === result.optimalFranchise ? 'bg-white/70' : ''
                               }`}
                             >
-                              <td className="py-2 pr-2">CHF {item.franchise}</td>
-                              <td className="py-2 px-1">CHF {item.monthlyPremium}</td>
-                              <td className="py-2 px-1">CHF {item.yearlyPremium}</td>
-                              <td className="py-2 px-1">CHF {item.totalCost}</td>
+                              <td className="py-2 pr-2">CHF {formatChf(item.franchise, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+                              <td className="py-2 px-1">CHF {formatChf(item.monthlyPremium)}</td>
+                              <td className="py-2 px-1">CHF {formatChf(item.yearlyPremium, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+                              <td className="py-2 px-1">CHF {formatChf(item.totalCost, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
                               <td className="py-2 pl-2">
                                 {item.franchise === result.optimalFranchise && (
                                   <span className="inline-flex items-center rounded-full bg-blue-600 px-2 py-0.5 text-[11px] font-semibold text-white">
@@ -290,12 +291,12 @@ export default function FranchiseOptimizerPage() {
                         <tbody>
                           {result.allResults.map((item) => (
                             <tr key={item.franchise} className="border-t border-blue-100">
-                              <td className="py-2 px-2">CHF {item.franchise}</td>
-                              <td className="py-2 px-2">CHF {item.franchiseCost}</td>
-                              <td className="py-2 px-2">CHF {item.costsAboveFranchise}</td>
-                              <td className="py-2 px-2">CHF {Math.round(item.selbstbehalt)}</td>
-                              <td className="py-2 px-2">CHF {item.yearlyPremium}</td>
-                              <td className="py-2 px-2 font-medium">CHF {item.totalCost}</td>
+                              <td className="py-2 px-2">CHF {formatChf(item.franchise, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+                              <td className="py-2 px-2">CHF {formatChf(item.franchiseCost, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+                              <td className="py-2 px-2">CHF {formatChf(item.costsAboveFranchise, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+                              <td className="py-2 px-2">CHF {formatChf(Math.round(item.selbstbehalt), { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+                              <td className="py-2 px-2">CHF {formatChf(item.yearlyPremium, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
+                              <td className="py-2 px-2 font-medium">CHF {formatChf(item.totalCost, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
                             </tr>
                           ))}
                         </tbody>
