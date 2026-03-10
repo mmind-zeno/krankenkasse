@@ -8,6 +8,9 @@ import franchiseRules from '../data/franchise_rules.json';
 
 const { hochkostengrenze } = franchiseRules;
 
+/** eOKP-Zuschlag Erwachsene (CHF/Monat), gemäss docs/okp-praemien-2026-llv-checked.md */
+const eOKP_ZUSCHLAG_ERWACHSEN = 40;
+
 export function calculateTotalYearlyCost(
   yearlyMedicalCosts,
   franchise,
@@ -38,13 +41,14 @@ export function findOptimalFranchise(
   const kasse = premiumsData.kassen[kasseName];
   if (!kasse) throw new Error(`Unbekannte Kasse: ${kasseName}`);
 
-  const premiums = kasse.premiums[model];
+  const premiums = kasse.premiums.basic;
   const franchises = [500, 1500, 2500, 4000];
   const rate = ageBracket === 'senior' ? 0.10 : 0.20;
+  const plusSurcharge = model === 'plus' ? eOKP_ZUSCHLAG_ERWACHSEN : 0;
 
   const results = franchises.map((franchise) => {
     const premiumKey = `franchise_${franchise}`;
-    const monthlyPremium = premiums[premiumKey].monthly;
+    const monthlyPremium = (premiums[premiumKey]?.monthly ?? 0) + plusSurcharge;
     const yearlyPremium = monthlyPremium * 12;
     const franchiseCost = Math.min(yearlyMedicalCosts, franchise);
     const costsAboveFranchise = Math.max(0, yearlyMedicalCosts - franchise);
@@ -85,11 +89,13 @@ export function compareAllKassen(
   ageBracket = 'adult'
 ) {
   const rate = ageBracket === 'senior' ? 0.10 : 0.20;
+  const plusSurcharge = model === 'plus' ? eOKP_ZUSCHLAG_ERWACHSEN : 0;
   const kassenIds = Object.keys(premiumsData.kassen);
   const results = kassenIds.map((kasseId) => {
     const kasse = premiumsData.kassen[kasseId];
     const premiumKey = `franchise_${franchise}`;
-    const monthlyPremium = kasse.premiums[model][premiumKey].monthly;
+    const baseMonthly = kasse.premiums.basic[premiumKey]?.monthly ?? 0;
+    const monthlyPremium = baseMonthly + plusSurcharge;
     const totalCost = calculateTotalYearlyCost(yearlyMedicalCosts, franchise, monthlyPremium, rate);
     return {
       kasseId,
