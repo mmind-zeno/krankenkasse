@@ -50,9 +50,6 @@ export default function Footer() {
           </a>
         </p>
         <p className="mt-1 text-xs text-blue-300/80">
-          Projekt in Kooperation mit Erasmus+.
-        </p>
-        <p className="mt-1 text-xs text-blue-300/80">
           Version {typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '–'}
         </p>
       </div>
