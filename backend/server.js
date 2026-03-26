@@ -471,5 +471,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`KK-Check backend v0.1.2 listening on port ${PORT}`);
+  console.log(`KK-Check backend v0.6.4 listening on port ${PORT}`);
 });
