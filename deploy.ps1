@@ -12,7 +12,7 @@ if (-not $Path) { $Path = "/opt/kk-check" }
 $ErrorActionPreference = "Stop"
 $projectRoot = $PSScriptRoot
 
-Write-Host "KK-Check v0.6.3 - Deploy zu $DeployHost : $Path" -ForegroundColor Green
+Write-Host "KK-Check v0.6.4 - Deploy zu $DeployHost : $Path" -ForegroundColor Green
 
 Write-Host "[1/4] Frontend build..." -ForegroundColor Cyan
 Push-Location $projectRoot\frontend
@@ -49,12 +49,22 @@ Copy-Item $projectRoot\docker-compose.yml $deployDir\
 Copy-Item $projectRoot\.env.example $deployDir\ -ErrorAction SilentlyContinue
 
 Write-Host "[3/4] Upload zu Server..." -ForegroundColor Cyan
-$scpDest = $DeployHost + ":" + $Path + "/"
-scp -r $deployDir\* $scpDest
+$tarFile = Join-Path $env:TEMP "kk-check-deploy.tar.gz"
+Push-Location $deployDir
+& "$env:SystemRoot\System32\tar.exe" -czf $tarFile .
+if ($LASTEXITCODE -ne 0) { Pop-Location; Write-Error "tar fehlgeschlagen"; exit 1 }
+Pop-Location
+ssh $DeployHost "mkdir -p $Path"
+scp $tarFile "${DeployHost}:${Path}/deploy.tar.gz"
+if ($LASTEXITCODE -ne 0) { Write-Error "Upload fehlgeschlagen"; exit 1 }
+ssh $DeployHost "cd $Path && tar -xzf deploy.tar.gz && rm deploy.tar.gz"
+if ($LASTEXITCODE -ne 0) { Write-Error "Entpacken fehlgeschlagen"; exit 1 }
+Remove-Item $tarFile -ErrorAction SilentlyContinue
 
 Write-Host "[4/4] Docker auf Server starten..." -ForegroundColor Cyan
 $remoteCmd = 'cd ' + $Path + '; docker compose build --no-cache; docker compose up -d'
 ssh $DeployHost $remoteCmd
+if ($LASTEXITCODE -ne 0) { Write-Error "Docker-Start fehlgeschlagen"; exit 1 }
 
 Remove-Item $deployDir -Recurse -Force -ErrorAction SilentlyContinue
 Write-Host "Deploy abgeschlossen. App auf Port 3000." -ForegroundColor Green
